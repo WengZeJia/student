@@ -1,0 +1,79 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+	<!-- 
+		1.如下的配置
+		2.spring的约定由于配置：<debug/>可以查看
+			2.1 如果在web.xml中配置了springSecurityFilterChain过滤器，就可以看到spring-security的过滤链（但是现在好像看不到了）
+				如果配置了springSecurityFilterChain这个名称，则spring会加载默认的过滤链
+				Security filter chain: [
+				  SecurityContextPersistenceFilter
+				  LogoutFilter
+				  UsernamePasswordAuthenticationFilter
+				  DefaultLoginPageGeneratingFilter   // 实现默认登录页面的过滤器
+				  BasicAuthenticationFilter
+				  RequestCacheAwareFilter
+				  SecurityContextHolderAwareRequestFilter
+				  AnonymousAuthenticationFilter
+				  SessionManagementFilter
+				  ExceptionTranslationFilter
+				  FilterSecurityInterceptor
+				]
+			2.2 如果在认证管理器authentication-manager中没有配置id或者别名，默认会以org.springframework.org.springframework.security.authentication.AuthenticationManager.authentication.AuthenticationManager类名为id
+				用户，角色，权限是有关联的，通过id=org.springframework.org.springframework.security.authentication.AuthenticationManager.authentication.AuthenticationManager进行关联
+		3.通过修改配置，完成权限框架
+			3.1： 修改登录页面
+				<form-login />此为配置自定义登录页面标签
+			
+			3.3： 注销页面
+	 -->
+	
+	<!-- 
+		配置无需拦截的页面,
+		spirng security3.1以前可以在http节点中配置intercept-url pattern拦截路径,
+		再配置filter='none'即可,但是3.1以后已经不支持这种配置,
+		只能采用以下此种配置
+	-->
+	<!-- <http pattern="/js/**" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/common/**" security="none" />
+	<http pattern="/login*.jsp*" security="none" /> -->
+
+	
+	<!-- 认证管理器，配置了管理员与角色的关系 -->
+	<authentication-manager alias="authenticationManager">
+		<!-- user-service-ref通过配置的service去查询数据库中管理员与角色的关系 -->
+		<authentication-provider user-service-ref="teacherInfoService">
+			<password-encoder hash="md5" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<!-- 
+		1.http标签，用来配置url，即是配置角色与权限的关系
+		2.use-expressions="true"，如果一个资源允许多个角色访问，则角色要采用表达式，此标签为配置使用表达式，调用的类为SecurityExpressionRoot
+		
+		entry-point-ref 指定登录入口 
+	-->
+	<http entry-point-ref="authEntryPoint" servlet-api-provision="true" access-denied-page="/login.jsp" >
+		<!-- * 仅代表当前目录的所有文件，** 才代表当前目录和子目录 -->
+		<intercept-url pattern="/**" access="ROLE_USER" />
+
+		<!---配置session超时页面,并登录MaxSessions只能1个 -->
+		<session-management invalid-session-url="/login.jsp">
+			<concurrency-control error-if-maximum-exceeded="false" max-sessions="1" expired-url="/login.jsp" />
+		</session-management>
+
+		<!-- 添加自己定义的 AuthenticationFilter 到 FilterChain 的 FORM_LOGIN_FILTER过滤器(position)位置 -->
+		<custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR" />
+	</http>
+	
+	<debug/>
+	
+</beans:beans>

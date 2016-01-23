@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wzj.ssm.entity.Mark" >
+  <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.Mark" >
+    <id column="mark_id" property="markId" jdbcType="BIGINT" />
+    <result column="exam_name" property="examName" jdbcType="VARCHAR" />
+    <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+    <result column="grade_name" property="gradeName" jdbcType="VARCHAR" />
+    <result column="is_absent" property="isAbsent" jdbcType="TINYINT" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
+    <result column="createBy" property="createby" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="updateBy" property="updateby" jdbcType="INTEGER" />
+    <result column="updateTime" property="updatetime" jdbcType="DATE" />
+    <association column="student_id" property="studentInfo" resultMap="com.wzj.ssm.entity.StudentInfo.BaseResultMap" />
+    <association column="exam_id" property="exam" resultMap="com.wzj.ssm.entity.Exam.BaseResultMap" />
+    <association column="subject_id" property="subject" resultMap="com.wzj.ssm.entity.Subject.BaseResultMap" />
+    <association column="grade_id" property="grade" resultMap="com.wzj.ssm.entity.Grade.BaseResultMap" />
+  </resultMap>
+</mapper>

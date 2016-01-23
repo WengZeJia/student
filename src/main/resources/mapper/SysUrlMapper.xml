@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wzj.ssm.dao.modelMapper.SysUrlMapper" >
+  <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.SysUrl" >
+    <id column="sys_url_id" property="sysUrlId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="createby" property="createby" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="DATE" />
+    <result column="updateby" property="updateby" jdbcType="INTEGER" />
+    <result column="updatetime" property="updatetime" jdbcType="DATE" />
+    <association column="sys_privilege_id" property="sysPrivilege" resultMap="com.wzj.ssm.dao.modelMapper.SysPrivilegeMapper.BaseResultMap" />
+  </resultMap>
+  
+  
+  <select id="selectOneJoinPrivilegeByUrl" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT su.*,sp.* 
+  	FROM t_sys_url AS su 
+  	LEFT JOIN t_sys_privilege AS sp 
+  	ON su.sys_url_id = sp.sys_privilege_id 
+  	WHERE 
+  		su.url = #{url}
+  </select>
+</mapper>
