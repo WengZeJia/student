@@ -88,7 +88,7 @@
 					<td><input type="hidden" name="createtime" value="${teacherInfo.createtime }"/>${teacherInfo.createtime }</td>
 				</tr>
 				<tr>
-					<th width="20%">更新人:</th>
+					<th width="20%">更新人的:</th>
 					<td><input type="hidden" name="updateby" value="${teacherInfo.updateby }"/>${teacherInfo.updateby }</td>
 					<th width="20%">更新时间:</th>
 					<td><fmt:formatDate value="${teacherInfo.updatetime }" /></td>
