@@ -24,11 +24,9 @@ drop table if exists t_sys_role;
 
 drop table if exists t_sys_role_privilege_middle;
 
+drop table if exists t_sys_teacher_role_middle;
+
 drop table if exists t_sys_url;
-
-drop table if exists t_sys_user;
-
-drop table if exists t_sys_user_role_middle;
 
 drop table if exists t_teacher_grade_middle;
 
@@ -295,6 +293,32 @@ create index Index_role_privilege on t_sys_role_privilege_middle
 );
 
 /*==============================================================*/
+/* Table: t_sys_teacher_role_middle                             */
+/*==============================================================*/
+create table t_sys_teacher_role_middle
+(
+   id                   int not null auto_increment,
+   teacher_info_id      int,
+   sys_role_id          int,
+   createby             int,
+   createtime           date,
+   updateby             int,
+   updatetime           date,
+   primary key (id)
+);
+
+alter table t_sys_teacher_role_middle comment '教师角色中间表';
+
+/*==============================================================*/
+/* Index: Index_user_role                                       */
+/*==============================================================*/
+create index Index_user_role on t_sys_teacher_role_middle
+(
+   sys_role_id,
+   teacher_info_id
+);
+
+/*==============================================================*/
 /* Table: t_sys_url                                             */
 /*==============================================================*/
 create table t_sys_url
@@ -311,66 +335,6 @@ create table t_sys_url
 );
 
 alter table t_sys_url comment '请求资源表';
-
-/*==============================================================*/
-/* Table: t_sys_user                                            */
-/*==============================================================*/
-create table t_sys_user
-(
-   sys_user_id          int not null auto_increment,
-   sys_account          varchar(20),
-   sys_password         varchar(100),
-   full_name            varchar(20),
-   gender               varchar(2),
-   phone                varchar(30),
-   email                varchar(30),
-   is_account_non_epired tinyint(1),
-   is_account_non_locked tinyint(1),
-   is_credentials_non_expired tinyint(1),
-   is_enabled           tinyint(1),
-   description          varchar(200),
-   createBy             int,
-   createTime           date,
-   updateBy             int,
-   updateTime           date,
-   primary key (sys_user_id)
-);
-
-alter table t_sys_user comment '系统用户表';
-
-/*==============================================================*/
-/* Index: Index_user_account                                    */
-/*==============================================================*/
-create index Index_user_account on t_sys_user
-(
-   sys_account
-);
-
-/*==============================================================*/
-/* Table: t_sys_user_role_middle                                */
-/*==============================================================*/
-create table t_sys_user_role_middle
-(
-   id                   int not null auto_increment,
-   sys_user_id          int,
-   sys_role_id          int,
-   createby             int,
-   createtime           date,
-   updateby             int,
-   updatetime           date,
-   primary key (id)
-);
-
-alter table t_sys_user_role_middle comment '用户角色中间表';
-
-/*==============================================================*/
-/* Index: Index_user_role                                       */
-/*==============================================================*/
-create index Index_user_role on t_sys_user_role_middle
-(
-   sys_user_id,
-   sys_role_id
-);
 
 /*==============================================================*/
 /* Table: t_teacher_grade_middle                                */
@@ -411,6 +375,10 @@ create table t_teacher_info
    subject_ids          varchar(30),
    phone                varchar(30),
    email                varchar(30),
+   is_account_non_expired tinyint(1),
+   is_account_non_locked tinyint(1),
+   is_credentials_non_expired tinyint(1),
+   is_enabled           tinyint(1),
    description          varchar(200),
    createBy             int,
    createTime           date,
@@ -451,14 +419,14 @@ alter table t_sys_role_privilege_middle add constraint FK_Reference_14 foreign k
 alter table t_sys_role_privilege_middle add constraint FK_Reference_15 foreign key (sys_role_id)
       references t_sys_role (sys_role_id) on delete restrict on update restrict;
 
+alter table t_sys_teacher_role_middle add constraint FK_Reference_13 foreign key (sys_role_id)
+      references t_sys_role (sys_role_id) on delete restrict on update restrict;
+
+alter table t_sys_teacher_role_middle add constraint FK_Reference_16 foreign key (teacher_info_id)
+      references t_teacher_info (teacher_info_id) on delete restrict on update restrict;
+
 alter table t_sys_url add constraint FK_Reference_11 foreign key (sys_privilege_id)
       references t_sys_privilege (sys_privilege_id) on delete restrict on update restrict;
-
-alter table t_sys_user_role_middle add constraint FK_Reference_12 foreign key (sys_user_id)
-      references t_sys_user (sys_user_id) on delete restrict on update restrict;
-
-alter table t_sys_user_role_middle add constraint FK_Reference_13 foreign key (sys_role_id)
-      references t_sys_role (sys_role_id) on delete restrict on update restrict;
 
 alter table t_teacher_grade_middle add constraint FK_Reference_10 foreign key (grade_id)
       references t_grade (grade_id) on delete restrict on update restrict;

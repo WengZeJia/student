@@ -16,12 +16,12 @@
     updatetime
   </sql>
   <select id="selectListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-  		SELECT sr.*,surm.*
+  		SELECT sr.*,strm.*
   		FROM t_sys_role AS sr
-  		LEFT JOIN t_sys_user_role_middle AS surm
-  		ON sr.sys_role_id = surm.sys_role_id
+  		LEFT JOIN t_sys_teacher_role_middle AS strm
+  		ON sr.sys_role_id = strm.sys_role_id
   		WHERE 
-  			surm.sys_user_id = #{sysUserId}
+  			strm.teacher_info_id = #{teacherInfoId}
   </select>
   
    <select id="selectListByPrivilegeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -38,7 +38,7 @@
 	<!-- 认证管理器，配置了管理员与角色的关系 -->
 	<authentication-manager alias="authenticationManager">
 		<!-- user-service-ref通过配置的service去查询数据库中管理员与角色的关系 -->
-		<authentication-provider user-service-ref="sysUserService">
+		<authentication-provider user-service-ref="teacherInfoService">
 			<password-encoder hash="md5" />
 		</authentication-provider>
 	</authentication-manager>
@@ -57,7 +57,7 @@
 		-->
 		<form-login 
 		login-page="/login.jsp" login-processing-url="/login.action" 
-		username-parameter="sysAccount" password-parameter="sysPassword" 
+		username-parameter="number" password-parameter="password" 
 		default-target-url="/console/main.action" />
 		
 		<!---配置session超时页面,并登录MaxSessions只能1个 -->

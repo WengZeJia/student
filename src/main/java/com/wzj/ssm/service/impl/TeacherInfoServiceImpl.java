@@ -1,10 +1,15 @@
 package com.wzj.ssm.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.wzj.ssm.entity.SysRole;
 import com.wzj.ssm.entity.TeacherInfo;
 import com.wzj.ssm.service.TeacherInfoService;
 
@@ -12,21 +17,22 @@ import com.wzj.ssm.service.TeacherInfoService;
 public class TeacherInfoServiceImpl extends BaseServiceImpl<TeacherInfo> implements TeacherInfoService,UserDetailsService {
 
 	
-	public TeacherInfo login(TeacherInfo teacherInfo) {
-		return this.selectOne(teacherInfo);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return this.getTeacherJoinRoleByNumber(username);
 	}
-
-	public UserDetails loadUserByUsername(String paramString) throws UsernameNotFoundException {
-		TeacherInfo teacherInfo = getTeacherByNumber(paramString);
-		if(teacherInfo == null) {
-			throw new UsernameNotFoundException("用户不存在");
-		}
-		return teacherInfo;
-	}
-
-	public TeacherInfo getTeacherByNumber(String number) {
+	
+	public TeacherInfo getTeacherJoinRoleByNumber(String number) {
 		TeacherInfo teacherInfo = new TeacherInfo();
 		teacherInfo.setNumber(number);
-		return this.teacherInfoMapper.selectOne(teacherInfo);
+		TeacherInfo teacherInfoDB = this.teacherInfoMapper.selectOne(teacherInfo);
+		if(teacherInfoDB != null) { //若改账号的系统用户不为空，则根据用户ID查询用户拥有的角色集合
+			List<SysRole> roleList = sysRoleMapper.selectListByUserId(teacherInfoDB.getTeacherInfoId());
+			if(roleList != null && roleList.size() > 0) {
+				Set<SysRole> roleSet = new HashSet<SysRole>();
+				roleSet.addAll(roleList);
+				teacherInfoDB.setSysRoleSet(roleSet);
+			}
+		}
+		return teacherInfoDB;
 	}
 }
