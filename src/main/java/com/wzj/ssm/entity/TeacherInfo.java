@@ -21,6 +21,8 @@ public class TeacherInfo extends BaseModel implements UserDetails {
     private String name;
 
     private String gender;
+    
+    private Integer age;
 
     private String subjectIds;
 
@@ -81,8 +83,16 @@ public class TeacherInfo extends BaseModel implements UserDetails {
     public void setGender(String gender) {
         this.gender = gender == null ? null : gender.trim();
     }
+    
+    public Integer getAge() {
+		return age;
+	}
 
-    public String getSubjectIds() {
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public String getSubjectIds() {
         return subjectIds;
     }
 

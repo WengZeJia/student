@@ -3,11 +3,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>教师信息表添加</title>
+<title>教师信息表编辑</title>
 <%@ include file="/common/include/common.jsp"%>
 
 <script type="text/javascript">
 	$(function() {
+		var isReadOnly = "${requestScope.isReadOnly}";
+		if(isReadOnly != null && $.trim(isReadOnly).length > 0 && Boolean(isReadOnly)) {
+			$(":input").attr("disabled", true);
+		}
+		
 		$("#dataFormSave",$("div .panel-toolbar")).click(function() {
 			$.ajax({
 				   type: "POST",
@@ -61,8 +66,8 @@
 				</tr>
 				<tr>
 					<th width="20%">性别:</th>
-					<td><input type="radio" name="gender" /> 男
-						<input type="radio" name="gender" /> 女
+					<td><input type="radio" name="gender" value="m" ${teacherInfo.gender=='m'?'checked':null } /> 男
+						<input type="radio" name="gender" value="w" ${teacherInfo.gender=='w'?'checked':null } /> 女
 					</td>
 					<th width="20%">年龄:</th>
 					<td><input type="text" style="width: 93%" name="age"
@@ -88,13 +93,17 @@
 					<td><input type="hidden" name="createtime" value="${teacherInfo.createtime }"/>${teacherInfo.createtime }</td>
 				</tr>
 				<tr>
-					<th width="20%">更新人的:</th>
+					<th width="20%">更新人:</th>
 					<td><input type="hidden" name="updateby" value="${teacherInfo.updateby }"/>${teacherInfo.updateby }</td>
 					<th width="20%">更新时间:</th>
 					<td><fmt:formatDate value="${teacherInfo.updatetime }" /></td>
 				</tr>
 			</table>
 			<input type="hidden" name="teacherInfoId" value="${teacherInfo.teacherInfoId }"/>
+			<input type="hidden" name="isAccountNonExpired" value="1"/>
+			<input type="hidden" name="isAccountNonLocked" value="1"/>
+			<input type="hidden" name="isCredentialsNonExpired" value="1"/>
+			<input type="hidden" name="isEnabled" value="1"/>
 		</form>
 </body>
 </html>

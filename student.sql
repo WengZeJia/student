@@ -372,6 +372,7 @@ create table t_teacher_info
    password             varchar(100),
    name                 varchar(20),
    gender               varchar(2),
+   age					int,
    subject_ids          varchar(30),
    phone                varchar(30),
    email                varchar(30),

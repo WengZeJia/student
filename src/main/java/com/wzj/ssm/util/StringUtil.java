@@ -33,7 +33,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static Integer parseIntIsNullGetDef(String source, Integer defaultInt) {
-		return isEmpty(source) ? Integer.valueOf(source) : 0;
+		return isEmpty(source) ? Integer.valueOf(source) : defaultInt;
 	}
 	
 	

@@ -10,10 +10,31 @@
         	window.location.href = "edit.action";
         }
         function modifyClick() {
-        	window.location.href = "edit.action";
+        	var manager = $("#maingrid").ligerGetGridManager();
+        	var row = manager.getSelectedRow();
+        	if (!row) { 
+        		$.ligerDialog.tip({  title: '提示信息',content:'请选择行',isDrag:false }); 
+        	} else {
+        		window.location.href = "edit.action?teacherInfoId="+row.teacherInfoId;
+        	}
         }
         function deleteClick() {
-        	window.location.href = "edit.action";
+        	var manager = $("#maingrid").ligerGetGridManager();
+        	var row = manager.getSelectedRow();
+        	if (!row) { 
+        		$.ligerDialog.tip({  title: '提示信息',content:'请选择行',isDrag:false }); 
+        	} else {
+        		window.location.href = "delete.action?teacherInfoId="+row.teacherInfoId;
+        	}
+        }
+        function viewClick() {
+        	var manager = $("#maingrid").ligerGetGridManager();
+        	var row = manager.getSelectedRow();
+        	if (!row) { 
+        		$.ligerDialog.tip({  title: '提示信息',content:'请选择行',isDrag:false }); 
+        	} else {
+        		window.location.href = "edit.action?teacherInfoId="+row.teacherInfoId + "&isReadOnly=" + true;
+        	}
         }
         $(function () {
         	var getTeacherListUrl = "${ctx}/teacherInfo/getAll.action";
@@ -24,18 +45,44 @@
                 url: getTeacherListUrl,
                 columns: [
                 { display: '工号', name: 'number', width: 100, minWidth: 30 },
-                { display: '姓名', name: 'name', minWidth: 120 },
-                { display: '性别', name: 'gender', minWidth: 140 },
-                { display: '科目', formatter:function(){
-                	
-                } }
+                { display: '姓名', name: 'name', minWidth: 100 },
+                { display: '性别', name: 'gender', minWidth: 20, render:function(rowdata, index, value) {
+	           		if (value != null) {
+	           			if(value == "m") {
+	           				return "男";
+	           			}
+	           			if(value == "w") {
+	           				return "女";
+	           			}
+	        		} 
+	           		 return null;
+	        		}
+                },
+                { display: '账户是否过期', name: 'isAccountNonExpired', minWidth: 20, render:function(rowdata, index, value) {
+                		return value == 1 ? "否" : "是";
+                	}
+                },
+                { display: '账户是否锁定', name: 'isAccountNonLocked', minWidth: 20, render:function(rowdata, index, value) {
+                		return value == 1 ? "否" : "是";
+                	}
+	            },
+	            { display: '证书是否有效', name: 'isCredentialsNonExpired', minWidth: 20, render:function(rowdata, index, value) {
+	            		return value == 1 ? "是" : "否";
+		        	}
+		        },
+                { display: '账号是否可用', name: 'isEnabled', minWidth: 20, render:function(rowdata, index, value) {
+                		return value == 1 ? "是" : "否";
+                	}
+           	 	}
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [
                 { text: '增加', click: addClick, icon: 'add' },
                 { line: true },
-                { text: '修改', click: modifyClick, icon: 'modify' },
+                { text: '编辑', click: modifyClick, icon: 'modify' },
                 { line: true },
-                { text: '删除', click: deleteClick, icon: 'delete'/* img: '../../../lib/ligerUI/skins/icons/delete.gif' */ }
+                { text: '删除', click: deleteClick, icon: 'delete' },
+                { line: true },
+                { text: '查看', click: viewClick, icon: 'view' }
                 ]
                 }
             });

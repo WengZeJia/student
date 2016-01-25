@@ -65,9 +65,10 @@ public class TeacherInfoController extends BaseController {
 		ModelAndView mv = null;
 		try {
 			String teacherInfoIdStr = request.getParameter("teacherInfoId");
+			String isReadOnly = request.getParameter("isReadOnly");
 			Integer teacherInfoId = StringUtil.parseIntIsNullGetDef(teacherInfoIdStr, 0);
 			TeacherInfo teacherInfoDB = teacherInfoService.selectByPrimaryKey(teacherInfoId);
-			mv = getAutoView().addObject("teacherInfo", teacherInfoDB);
+			mv = getAutoView().addObject("teacherInfo", teacherInfoDB).addObject("isReadOnly", isReadOnly);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
