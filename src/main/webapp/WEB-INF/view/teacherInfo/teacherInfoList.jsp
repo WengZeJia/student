@@ -38,7 +38,17 @@
         				teacherInfoIds += "," + rows[i].teacherInfoId
         			}
         		}
-        		window.location.href = "delete.action?teacherInfoIds=" + teacherInfoIds;
+        		var url = "delete.action?teacherInfoIds=" + teacherInfoIds;
+        		$.ajax({
+        			   type: "GET",
+        			   url: url,
+        			   success: function(msg){
+        				   if(msg != null && msg.returnMsg != null) {
+        					   alert(msg.returnMsg)
+        				   } 
+        				   window.location.reload();
+        			   }
+        		});
         	}
         }
         function viewClick() {
@@ -50,7 +60,7 @@
         		},2000);
         		return ;
         	} else {
-        		window.location.href = "edit.action?teacherInfoId="+row.teacherInfoId + "&isReadOnly=" + true;
+        		window.location.href = "edit.action?teacherInfoId="+rows[0].teacherInfoId + "&isReadOnly=" + true;
         	}
         }
         $(function () {
@@ -61,9 +71,9 @@
                 height:'auto',
                 url: getTeacherListUrl,
                 columns: [
-                { display: '工号', name: 'number', width: 100, minWidth: 30 },
-                { display: '姓名', name: 'name', minWidth: 100 },
-                { display: '性别', name: 'gender', minWidth: 20, render:function(rowdata, index, value) {
+                { display: '工号', name: 'number'},
+                { display: '姓名', name: 'name' },
+                { display: '性别', name: 'gender',  render:function(rowdata, index, value) {
 	           		if (value != null) {
 	           			if(value == "m") {
 	           				return "男";
@@ -75,19 +85,19 @@
 	           		 return null;
 	        		}
                 },
-                { display: '账户是否过期', name: 'isAccountNonExpired', minWidth: 20, render:function(rowdata, index, value) {
+                { display: '账户是否过期', name: 'isAccountNonExpired', render:function(rowdata, index, value) {
                 		return value == 1 ? "否" : "是";
                 	}
                 },
-                { display: '账户是否锁定', name: 'isAccountNonLocked', minWidth: 20, render:function(rowdata, index, value) {
+                { display: '账户是否锁定', name: 'isAccountNonLocked',  render:function(rowdata, index, value) {
                 		return value == 1 ? "否" : "是";
                 	}
 	            },
-	            { display: '证书是否有效', name: 'isCredentialsNonExpired', minWidth: 20, render:function(rowdata, index, value) {
+	            { display: '证书是否有效', name: 'isCredentialsNonExpired',  render:function(rowdata, index, value) {
 	            		return value == 1 ? "是" : "否";
 		        	}
 		        },
-                { display: '账号是否可用', name: 'isEnabled', minWidth: 20, render:function(rowdata, index, value) {
+                { display: '账号是否可用', name: 'isEnabled',  render:function(rowdata, index, value) {
                 		return value == 1 ? "是" : "否";
                 	}
            	 	}
@@ -107,11 +117,6 @@
 
             $("#pageloading").hide();
         });
-
-        function deleteRow()
-        {
-            g.deleteSelectedRow();
-        }
 
     </script>
 </head>

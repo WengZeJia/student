@@ -1,5 +1,6 @@
 package com.wzj.ssm.web;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,6 @@ public class TeacherInfoController extends BaseController {
 	@RequestMapping("/list")
 	public ModelAndView list() {
 		try {
-			System.out.println("TeacherInfoController.list()");
-			System.out.println(ContextUtil.getCurrentTeacherId());
 			return this.getAutoView();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -52,16 +51,17 @@ public class TeacherInfoController extends BaseController {
 	public Object save(TeacherInfo teacherInfo) {
 		String resultMsg = null;
 		WebReturnBean webReturnBean = new WebReturnBean();
-		if (teacherInfo.getTeacherInfoId() == null || teacherInfo.getTeacherInfoId() == 0) {
+		Integer teacherInfoId = teacherInfo.getTeacherInfoId();
+		if (teacherInfoId == null || teacherInfoId == 0) {
 			resultMsg = "添加数据成功";
-			teacherInfoService.insert(teacherInfo);
+			teacherInfoId = teacherInfoService.insert(teacherInfo);
 		} else {
 			resultMsg = "更新数据成功";
 			teacherInfoService.updateByPrimaryKeySelective(teacherInfo);
 		}
 		webReturnBean.addMessage(resultMsg);
+		webReturnBean.addMessage("teacherInfoId", teacherInfoId);
 		return webReturnBean.getReturnMap();
-
 	}
 
 	@RequestMapping("edit")
@@ -80,9 +80,24 @@ public class TeacherInfoController extends BaseController {
 	}
 	
 	@RequestMapping("delete")
-	public ModelAndView delete() {
+	@ResponseBody
+	public Object delete() {
+		String resultMsg = null;
+		WebReturnBean webReturnBean = new WebReturnBean();
 		String ids = request.getParameter("teacherInfoIds");
-		System.out.println(ids);
-		return null;
+		if(ids != null && ids.trim().length() > 0) {
+			String[] ids_str = ids.split(",");
+			Integer[] ids_int=new Integer[ids_str.length];
+			for(int i=0; i < ids_str.length; i++){
+				ids_int[i]=Integer.parseInt(ids_str[i]);
+			}
+			List<Integer> idsList = Arrays.asList(ids_int);
+			this.teacherInfoService.deleteList(idsList);
+			resultMsg = "删除数据成功";
+			webReturnBean.addMessage(resultMsg);
+			return webReturnBean.getReturnMap();
+		}
+		resultMsg = "删除数据失败";
+		return webReturnBean.getReturnMap();
 	}
 }

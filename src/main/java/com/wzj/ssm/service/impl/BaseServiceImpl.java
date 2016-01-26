@@ -60,8 +60,8 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 	
 	
 
-	public void insert(T t) {
-		baseMapper.insert(t);
+	public int insert(T t) {
+		return baseMapper.insert(t);
 	}
 
 	public void updateByPrimaryKey(T t) {
@@ -91,4 +91,5 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 	public T selectOne(T t) {
 		return baseMapper.selectOne(t);
 	}
+	
 }

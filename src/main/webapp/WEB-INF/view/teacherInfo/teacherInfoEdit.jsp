@@ -21,6 +21,7 @@
 				   success: function(msg){
 					   if(msg != null && msg.returnMsg != null) {
 						   alert(msg.returnMsg);
+						   window.location.href = "edit.action?teacherInfoId=" + ${teacherInfoId};
 					   }
 				   }
 				});

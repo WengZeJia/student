@@ -35,4 +35,8 @@ public class TeacherInfoServiceImpl extends BaseServiceImpl<TeacherInfo> impleme
 		}
 		return teacherInfoDB;
 	}
+
+	public void deleteList(List<Integer> teacherInfoIds) {
+		this.teacherInfoMapper.deleteList(teacherInfoIds);
+	}
 }

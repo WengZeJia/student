@@ -60,6 +60,9 @@
 		username-parameter="number" password-parameter="password" 
 		default-target-url="/console/main.action" />
 		
+		<logout invalidate-session="true"  
+        logout-success-url="/login.jsp"  
+        logout-url="/j_spring_security_logout.action"/>  
 		<!---配置session超时页面,并登录MaxSessions只能1个 -->
 		<session-management invalid-session-url="/login.jsp">
 			<concurrency-control error-if-maximum-exceeded="false" max-sessions="1" expired-url="/login.jsp" />

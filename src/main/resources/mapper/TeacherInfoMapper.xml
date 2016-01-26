@@ -22,4 +22,11 @@
     <result column="updateTime" property="updatetime" jdbcType="DATE" />
   </resultMap>
   
+  <delete id="deleteList" parameterType="java.lang.Integer">
+	DELETE FROM t_teacher_info where teacher_info_id in
+	<foreach item="idItem" collection="list" open="(" separator=","
+		close=")">
+		#{idItem}
+	</foreach>
+  </delete>
 </mapper>

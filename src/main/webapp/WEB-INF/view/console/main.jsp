@@ -257,7 +257,7 @@
         </select>
         <span>
        		<label> ${sessionScope.login_teacherInfo.name },你好 &nbsp;</label>
-        	<a href="javascript:void(0)" onclick="loginOut();return false;">退出</a>
+        	<a href="${ctx }/j_spring_security_logout.action">退出</a>
         </span>
     </div> 
 </div>
@@ -265,17 +265,10 @@
         <div position="left"  title="主要菜单" id="accordion1"> 
                      <div title="管理平台" class="l-scroll">
                          <a class="l-link" href="javascript:f_addTab('teacher_listpage','教师列表页面','${ctx }/teacherInfo/list.action')">教师管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('grade_listpage','班级列表页面','demos/case/listpage.htm')">班级管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面','demos/case/listpage.htm')">学生管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('exam_listpage','考试列表页面','demos/case/listpage.htm')">考试管理</a> 
+                         <a class="l-link" href="javascript:f_addTab('grade_listpage','班级列表页面', '${ctx }/grade/list.action')">班级管理</a> 
+                         <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面', '${ctx }/studentInfo/list.action')">学生管理</a> 
+                         <a class="l-link" href="javascript:f_addTab('exam_listpage','考试列表页面','${ctx }/exam/list.action')">考试管理</a> 
                     </div>
-                    <div title="">
-                    <div style=" height:7px;"></div>
-                        <a class="l-link" href="http://www.ligerui.com/go.aspx?id=case" target="_blank">演示系统</a>  
-                         <a class="l-link" href="javascript:f_addTab('listpage','列表页面','demos/case/listpage.htm')">列表页面</a> 
-                         <a class="l-link" href="demos/dialog/win7.htm" target="_blank">模拟Window桌面</a> 
-                        <a class="l-link" href="javascript:f_addTab('week','工作日志','demos/case/week.htm')">工作日志</a>  
-                    </div>    
                      <div title="学生管理">
                     <div style=" height:7px;"></div>
                           <a class="l-link" href="lab/generate/main.jsp" target="_blank">表格表单设计器</a> 
@@ -294,10 +287,5 @@
     </div>
     <div style="display:none"></div>
 </body>
-<script type="text/javascript">
-	function loginOut() {
-		
-	}
-</script>
 
 </html>
