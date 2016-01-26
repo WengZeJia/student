@@ -10,28 +10,45 @@
         	window.location.href = "edit.action";
         }
         function modifyClick() {
-        	var manager = $("#maingrid").ligerGetGridManager();
-        	var row = manager.getSelectedRow();
-        	if (!row) { 
-        		$.ligerDialog.tip({  title: '提示信息',content:'请选择行',isDrag:false }); 
+        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
+        	if (rows == null || rows.length == 0 || rows.length > 1) { 
+        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择一行',isDrag:false }); 
+        		setTimeout(function() {
+        			tip.close();
+        		},2000);
+        		return ;
         	} else {
-        		window.location.href = "edit.action?teacherInfoId="+row.teacherInfoId;
+        		window.location.href = "edit.action?teacherInfoId="+rows[0].teacherInfoId;
         	}
         }
         function deleteClick() {
-        	var manager = $("#maingrid").ligerGetGridManager();
-        	var row = manager.getSelectedRow();
-        	if (!row) { 
-        		$.ligerDialog.tip({  title: '提示信息',content:'请选择行',isDrag:false }); 
+        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
+        	if (rows == null || rows.length == 0) { 
+        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择至少一行',isDrag:false }); 
+        		setTimeout(function() {
+        			tip.close();
+        		},2000);
+        		return ;
         	} else {
-        		window.location.href = "delete.action?teacherInfoId="+row.teacherInfoId;
+        		var teacherInfoIds = "";
+        		for(var i = 0; i < rows.length; i++) {
+        			if(i == 0) {
+        				teacherInfoIds += rows[i].teacherInfoId
+        			} else {
+        				teacherInfoIds += "," + rows[i].teacherInfoId
+        			}
+        		}
+        		window.location.href = "delete.action?teacherInfoIds=" + teacherInfoIds;
         	}
         }
         function viewClick() {
-        	var manager = $("#maingrid").ligerGetGridManager();
-        	var row = manager.getSelectedRow();
-        	if (!row) { 
-        		$.ligerDialog.tip({  title: '提示信息',content:'请选择行',isDrag:false }); 
+        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
+        	if (rows == null || rows.length == 0 || rows.length > 1) { 
+        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择一行',isDrag:false}); 
+        		setTimeout(function() {
+        			tip.close();
+        		},2000);
+        		return ;
         	} else {
         		window.location.href = "edit.action?teacherInfoId="+row.teacherInfoId + "&isReadOnly=" + true;
         	}

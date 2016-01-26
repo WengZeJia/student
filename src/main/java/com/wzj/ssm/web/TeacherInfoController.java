@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wzj.ssm.entity.TeacherInfo;
+import com.wzj.ssm.entity.WebReturnBean;
 import com.wzj.ssm.util.ContextUtil;
 import com.wzj.ssm.util.StringUtil;
 
@@ -50,13 +51,16 @@ public class TeacherInfoController extends BaseController {
 	@ResponseBody
 	public Object save(TeacherInfo teacherInfo) {
 		String resultMsg = null;
+		WebReturnBean webReturnBean = new WebReturnBean();
 		if (teacherInfo.getTeacherInfoId() == null || teacherInfo.getTeacherInfoId() == 0) {
 			resultMsg = "添加数据成功";
+			teacherInfoService.insert(teacherInfo);
 		} else {
 			resultMsg = "更新数据成功";
+			teacherInfoService.updateByPrimaryKeySelective(teacherInfo);
 		}
-		teacherInfoService.insert(teacherInfo);
-		return resultMsg;
+		webReturnBean.addMessage(resultMsg);
+		return webReturnBean.getReturnMap();
 
 	}
 
@@ -73,5 +77,12 @@ public class TeacherInfoController extends BaseController {
 			throw new RuntimeException(e);
 		}
 		return mv;
+	}
+	
+	@RequestMapping("delete")
+	public ModelAndView delete() {
+		String ids = request.getParameter("teacherInfoIds");
+		System.out.println(ids);
+		return null;
 	}
 }

@@ -29,12 +29,19 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/spring.xml</param-value>
 	</context-param>
+	<!-- spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- spring security监听器 -->
 	<listener>
 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
 	</listener>
+	<!-- 属性监听器 -->
+	<listener>
+		<listener-class>com.wzj.ssm.listener.TeacherSessionAttributeListener</listener-class>
+	</listener>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

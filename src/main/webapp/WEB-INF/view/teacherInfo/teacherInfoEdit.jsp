@@ -19,7 +19,9 @@
 				   url: $("#saveForm").attr("action"),
 				   data: $("#saveForm").serializeArray(),
 				   success: function(msg){
-					   alert(msg);
+					   if(msg != null && msg.returnMsg != null) {
+						   alert(msg.returnMsg);
+					   }
 				   }
 				});
 		})
@@ -90,13 +92,13 @@
 					<th width="20%">创建人:</th>
 					<td><input type="hidden" name="createby" value="${teacherInfo.createby }"/>${teacherInfo.createby }</td>
 					<th width="20%">创建时间:</th>
-					<td><input type="hidden" name="createtime" value="${teacherInfo.createtime }"/>${teacherInfo.createtime }</td>
+					<td><input type="hidden" name="createtime" value="<fmt:formatDate type='date' dateStyle='medium' value='${teacherInfo.createtime }' />"/><fmt:formatDate type="date" dateStyle="medium" value="${teacherInfo.createtime }" /></td>
 				</tr>
 				<tr>
 					<th width="20%">更新人:</th>
-					<td><input type="hidden" name="updateby" value="${teacherInfo.updateby }"/>${teacherInfo.updateby }</td>
+					<td>${teacherInfo.updateby }</td>
 					<th width="20%">更新时间:</th>
-					<td><fmt:formatDate value="${teacherInfo.updatetime }" /></td>
+					<td><fmt:formatDate type="date" dateStyle="medium" value="${teacherInfo.updatetime }" /></td>
 				</tr>
 			</table>
 			<input type="hidden" name="teacherInfoId" value="${teacherInfo.teacherInfoId }"/>

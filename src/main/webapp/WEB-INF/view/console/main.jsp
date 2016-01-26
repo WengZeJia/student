@@ -255,7 +255,8 @@
             <option value="gray">Gray</option>
             <option value="gray2014">Gray2014</option>
         </select>
-        <span class="login_msg">${sessionScope.last_teacherInfo.name },你好 &nbsp;
+        <span>
+       		<label> ${sessionScope.login_teacherInfo.name },你好 &nbsp;</label>
         	<a href="javascript:void(0)" onclick="loginOut();return false;">退出</a>
         </span>
     </div> 
