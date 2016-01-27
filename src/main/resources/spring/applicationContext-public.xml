@@ -14,6 +14,9 @@
 	">
 
 	<context:component-scan base-package="com.wzj.ssm.service"/>
+	
+	<!-- appUtil bean -->
+	<bean id="appUtil" class="com.wzj.ssm.util.AppUtil" />
 
 	<!-- 1: 添加相应jar和 配置文件 2: 创建数据源 (添加 c3p0.jar) 3: 创建sqlSessionFactory 来加载MyBatis的主配置文件 
 		4: 创建事务管理器,来关联sqlSessionFactory 5: 创建通知、切面表达式 -->

@@ -8,7 +8,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static boolean isEmpty(String str) {
-		return (str != null && str.trim().length() > 0) ? true : false;
+		return (str == null || str.trim().length() == 0 || "null".equals(str.trim())) ? true : false;
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class StringUtil {
 	 * @return
 	 */
 	public static Integer parseIntIsNullGetDef(String source, Integer defaultInt) {
-		return isEmpty(source) ? Integer.valueOf(source) : defaultInt;
+		return isEmpty(source) ? defaultInt : Integer.valueOf(source);
 	}
 	
 	

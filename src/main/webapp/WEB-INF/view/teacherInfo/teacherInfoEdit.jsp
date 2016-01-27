@@ -5,7 +5,6 @@
 <head>
 <title>教师信息表编辑</title>
 <%@ include file="/common/include/common.jsp"%>
-
 <script type="text/javascript">
 	$(function() {
 		var isReadOnly = "${requestScope.isReadOnly}";
@@ -91,13 +90,13 @@
 				</tr>
 				<tr>
 					<th width="20%">创建人:</th>
-					<td><input type="hidden" name="createby" value="${teacherInfo.createby }"/>${teacherInfo.createby }</td>
+					<td><input type="hidden" name="createby" value="${teacherInfo.createby }"/><f:teacherName teacherInfoId="${teacherInfo.createby }" /></td>
 					<th width="20%">创建时间:</th>
 					<td><input type="hidden" name="createtime" value="<fmt:formatDate type='date' dateStyle='medium' value='${teacherInfo.createtime }' />"/><fmt:formatDate type="date" dateStyle="medium" value="${teacherInfo.createtime }" /></td>
 				</tr>
 				<tr>
 					<th width="20%">更新人:</th>
-					<td>${teacherInfo.updateby }</td>
+					<td><f:teacherName teacherInfoId="${teacherInfo.updateby }" /></td>
 					<th width="20%">更新时间:</th>
 					<td><fmt:formatDate type="date" dateStyle="medium" value="${teacherInfo.updatetime }" /></td>
 				</tr>

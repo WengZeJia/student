@@ -42,6 +42,14 @@
 		<listener-class>com.wzj.ssm.listener.TeacherSessionAttributeListener</listener-class>
 	</listener>
 	
+	<!-- 获取教师名自定义标签 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://www.wzj.com/functions</taglib-uri>
+			<taglib-location>/WEB-INF/tld/MyTag.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

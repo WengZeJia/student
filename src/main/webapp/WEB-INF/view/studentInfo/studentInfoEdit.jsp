@@ -90,13 +90,13 @@
 				</tr>
 				<tr>
 					<th width="20%">创建人:</th>
-					<td><input type="hidden" name="createby" value="${studentInfo.createby }"/>${studentInfo.createby }</td>
+					<td><input type="hidden" name="createby" value="${studentInfo.createby }"/><f:teacherName teacherInfoId="${studentInfo.createby }" /></td>
 					<th width="20%">创建时间:</th>
 					<td><input type="hidden" name="createtime" value="<fmt:formatDate type='date' dateStyle='medium' value='${studentInfo.createtime }' />"/><fmt:formatDate type="date" dateStyle="medium" value="${studentInfo.createtime }" /></td>
 				</tr>
 				<tr>
 					<th width="20%">更新人:</th>
-					<td>${studentInfo.updateby }</td>
+					<td><f:teacherName teacherInfoId="${studentInfo.updateby }" /></td>
 					<th width="20%">更新时间:</th>
 					<td><fmt:formatDate type="date" dateStyle="medium" value="${studentInfo.updatetime }" /></td>
 				</tr>

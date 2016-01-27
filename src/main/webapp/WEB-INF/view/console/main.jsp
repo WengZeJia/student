@@ -263,16 +263,17 @@
 </div>
   <div id="layout1" style="width:99.2%; margin:0 auto; margin-top:4px; "> 
         <div position="left"  title="主要菜单" id="accordion1"> 
-                     <div title="管理平台" class="l-scroll">
+                     <div title="教师管理" class="l-scroll">
                          <a class="l-link" href="javascript:f_addTab('teacher_listpage','教师列表页面','${ctx }/teacherInfo/list.action')">教师管理</a> 
                          <a class="l-link" href="javascript:f_addTab('grade_listpage','班级列表页面', '${ctx }/grade/list.action')">班级管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面', '${ctx }/studentInfo/list.action')">学生管理</a> 
                          <a class="l-link" href="javascript:f_addTab('exam_listpage','考试列表页面','${ctx }/exam/list.action')">考试管理</a> 
                     </div>
                      <div title="学生管理">
                     <div style=" height:7px;"></div>
-                          <a class="l-link" href="lab/generate/main.jsp" target="_blank">表格表单设计器</a> 
-                          <a class="l-link" href="lab/formdesign/main.jsp" target="_blank">可视化表单设计</a> 
+                         <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面', '${ctx }/studentInfo/list.action')">学生管理</a> 
+                    </div> 
+                    <div title="系统管理">
+                    <div style=" height:7px;"></div>
                     </div> 
         </div>
         <div position="center" id="framecenter"> 
