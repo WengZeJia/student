@@ -50,16 +50,17 @@ public class StudentInfoController extends BaseController {
 	public Object save(StudentInfo studentInfo) {
 		String resultMsg = null;
 		WebReturnBean webReturnBean = new WebReturnBean();
-		if (studentInfo.getStudentInfoId() == null || studentInfo.getStudentInfoId() == 0) {
+		Integer studentInfoId = studentInfo.getStudentInfoId();
+		if (studentInfoId == null || studentInfoId == 0) {
 			resultMsg = "添加数据成功";
-			studentInfoService.insert(studentInfo);
+			studentInfoId = studentInfoService.insert(studentInfo);
 		} else {
 			resultMsg = "更新数据成功";
 			studentInfoService.updateByPrimaryKeySelective(studentInfo);
 		}
 		webReturnBean.addMessage(resultMsg);
+		webReturnBean.addMessage("studentInfoId", studentInfoId);
 		return webReturnBean.getReturnMap();
-
 	}
 
 	@RequestMapping("edit")
