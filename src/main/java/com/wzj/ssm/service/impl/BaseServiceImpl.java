@@ -63,6 +63,10 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 	public int insert(T t) {
 		return baseMapper.insert(t);
 	}
+	
+	public int insertSelective(T t) {
+		return baseMapper.insertSelective(t);
+	}
 
 	public void updateByPrimaryKey(T t) {
 		baseMapper.updateByPrimaryKey(t);
@@ -90,6 +94,10 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 
 	public T selectOne(T t) {
 		return baseMapper.selectOne(t);
+	}
+	
+	public int selectCountByCondition(QueryCondition condition) {
+		return baseMapper.selectCountByCondition(condition);
 	}
 	
 }

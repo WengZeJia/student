@@ -11,12 +11,14 @@ public class WebReturnBean {
 		returnMap = new HashMap<String, Object>();
 	}
 
-	public void addMessage(Object object) {
+	public WebReturnBean addMessage(Object object) {
 		this.returnMap.put(DEFAULT_KEY, object);
+		return this;
 	}
 	
-	public void addMessage(String returnKey, Object object) {
+	public WebReturnBean addMessage(String returnKey, Object object) {
 		this.returnMap.put(returnKey, object);
+		return this;
 	}
 
 	public Map<String, Object> getReturnMap() {

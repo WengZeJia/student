@@ -9,8 +9,9 @@ public class QueryCondition {
 		queryConditions = new HashMap<String,Object>();
 	}
 	
-	public void addCondition(String conditionName, Object params) {
+	public QueryCondition addCondition(String conditionName, Object params) {
 		queryConditions.put(conditionName, params);
+		return this;
 	}
 	
 	public Map<String, Object> getQueryConditions() {

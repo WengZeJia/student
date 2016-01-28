@@ -15,6 +15,8 @@ import com.wzj.ssm.entity.QueryCondition;
 public interface BaseService<T> {
 
 	public int insert(T t);
+	
+	public int insertSelective(T t);
 
 	public void updateByPrimaryKey(T t);
 

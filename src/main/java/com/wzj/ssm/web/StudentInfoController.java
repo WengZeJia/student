@@ -53,13 +53,12 @@ public class StudentInfoController extends BaseController {
 		Integer studentInfoId = studentInfo.getStudentInfoId();
 		if (studentInfoId == null || studentInfoId == 0) {
 			resultMsg = "添加数据成功";
-			studentInfoId = studentInfoService.insert(studentInfo);
+			studentInfoId = studentInfoService.insertSelective(studentInfo);
 		} else {
 			resultMsg = "更新数据成功";
 			studentInfoService.updateByPrimaryKeySelective(studentInfo);
 		}
-		webReturnBean.addMessage(resultMsg);
-		webReturnBean.addMessage("studentInfoId", studentInfoId);
+		webReturnBean.addMessage(resultMsg).addMessage("studentInfoId", studentInfoId);
 		return webReturnBean.getReturnMap();
 	}
 

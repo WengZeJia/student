@@ -54,13 +54,12 @@ public class TeacherInfoController extends BaseController {
 		Integer teacherInfoId = teacherInfo.getTeacherInfoId();
 		if (teacherInfoId == null || teacherInfoId == 0) {
 			resultMsg = "添加数据成功";
-			teacherInfoId = teacherInfoService.insert(teacherInfo);
+			teacherInfoId = teacherInfoService.insertSelective(teacherInfo);
 		} else {
 			resultMsg = "更新数据成功";
 			teacherInfoService.updateByPrimaryKeySelective(teacherInfo);
 		}
-		webReturnBean.addMessage(resultMsg);
-		webReturnBean.addMessage("teacherInfoId", teacherInfoId);
+		webReturnBean.addMessage(resultMsg).addMessage("teacherInfoId", teacherInfoId);
 		return webReturnBean.getReturnMap();
 	}
 
@@ -98,6 +97,7 @@ public class TeacherInfoController extends BaseController {
 			return webReturnBean.getReturnMap();
 		}
 		resultMsg = "删除数据失败";
+		webReturnBean.addMessage(resultMsg);
 		return webReturnBean.getReturnMap();
 	}
 }
