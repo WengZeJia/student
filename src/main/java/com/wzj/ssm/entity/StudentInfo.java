@@ -1,13 +1,14 @@
 package com.wzj.ssm.entity;
 
-import java.util.Date;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 @Table(name = "t_student_info")
 public class StudentInfo extends BaseModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer studentInfoId;
 
     private String number;

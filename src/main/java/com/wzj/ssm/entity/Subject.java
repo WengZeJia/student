@@ -1,12 +1,13 @@
 package com.wzj.ssm.entity;
 
-import java.util.Date;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Table(name = "t_subject")
 public class Subject extends BaseModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer subjectId;
 
     private String name;

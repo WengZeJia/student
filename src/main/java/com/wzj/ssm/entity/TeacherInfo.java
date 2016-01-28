@@ -3,6 +3,8 @@ package com.wzj.ssm.entity;
 import java.util.Collection;
 import java.util.Set;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -12,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "t_teacher_info")
 public class TeacherInfo extends BaseModel implements UserDetails {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer teacherInfoId;
 
     private String number;

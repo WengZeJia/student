@@ -2,6 +2,8 @@ package com.wzj.ssm.entity;
 
 import java.util.Collection;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -11,6 +13,7 @@ import org.springframework.security.access.ConfigAttribute;
 @Table(name = "t_sys_privilege")
 public class SysPrivilege extends BaseModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sysPrivilegeId;
 
     private String privilegeName;

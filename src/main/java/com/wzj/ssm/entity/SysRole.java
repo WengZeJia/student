@@ -1,5 +1,7 @@
 package com.wzj.ssm.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Table(name = "t_sys_role")
 public class SysRole extends BaseModel implements GrantedAuthority, ConfigAttribute {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sysRoleId;
 
     private String roleName;
