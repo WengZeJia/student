@@ -69,6 +69,8 @@
             $("#maingrid").ligerGrid({
             	checkbox: true,
                 height:'auto',
+                isScroll:false,
+                allowAdjustColWidth:false,
                 url: getTeacherListUrl,
                 columns: [
                 { display: '工号', name: 'number'},
@@ -120,13 +122,9 @@
 
     </script>
 </head>
-<body style="overflow-x:hidden; padding:2px;">
+<body style="overflow:hidden; padding:2px;">
 <div class="l-loading" style="display:block" id="pageloading"></div>
- <a class="l-button" style="width:120px;float:left; margin-left:10px; display:none;" onclick="deleteRow()">删除选择的行</a>
-
  
- <div class="l-clear"></div>
-
     <div id="maingrid"></div>
    
   <div style="display:none;">

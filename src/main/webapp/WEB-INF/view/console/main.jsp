@@ -19,7 +19,7 @@
                 $("#layout1").ligerLayout({ leftWidth: 190, height: '100%',heightDiff:-34,space:4, onHeightChanged: f_heightChanged, allowLeftResize:false });
 
                 var height = $(".l-layout-center").height();
-
+                
                 //Tab
                 $("#framecenter").ligerTab({
                     height: height,
