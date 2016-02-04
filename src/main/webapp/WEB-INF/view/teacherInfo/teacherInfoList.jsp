@@ -42,6 +42,7 @@
         		$.ajax({
         			   type: "GET",
         			   url: url,
+        			   dataType: "json",
         			   success: function(msg){
         				   if(msg != null && msg.returnMsg != null) {
         					   alert(msg.returnMsg)

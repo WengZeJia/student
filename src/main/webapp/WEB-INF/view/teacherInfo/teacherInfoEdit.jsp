@@ -17,6 +17,7 @@
 				   type: "POST",
 				   url: $("#saveForm").attr("action"),
 				   data: $("#saveForm").serializeArray(),
+				   dataType: "json",
 				   success: function(msg){
 					   if(msg != null && msg.returnMsg != null) {
 						   alert(msg.returnMsg);

@@ -18,7 +18,8 @@
 				   type: "POST",
 				   url: $("#saveForm").attr("action"),
 				   data: $("#saveForm").serializeArray(),
-				   success: function(msg){
+				   dataType: "json",
+				   success: function(msg) {
 					   if(msg != null && msg.returnMsg != null) {
 						   alert(msg.returnMsg);
 						   window.location.href = "edit.action?studentInfoId=" + msg.studentInfoId;
