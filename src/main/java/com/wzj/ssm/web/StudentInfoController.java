@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wzj.ssm.entity.StudentInfo;
-import com.wzj.ssm.entity.WebReturnBean;
+import com.wzj.ssm.entity.ResultMessage;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -49,7 +49,7 @@ public class StudentInfoController extends BaseController {
 	@ResponseBody
 	public Object save(StudentInfo studentInfo) {
 		String resultMsg = null;
-		WebReturnBean webReturnBean = new WebReturnBean();
+		ResultMessage resultMessage = new ResultMessage();
 		Integer studentInfoId = studentInfo.getStudentInfoId();
 		if (studentInfoId == null || studentInfoId == 0) {
 			resultMsg = "添加数据成功";
@@ -58,8 +58,8 @@ public class StudentInfoController extends BaseController {
 			resultMsg = "更新数据成功";
 			studentInfoService.updateByPrimaryKeySelective(studentInfo);
 		}
-		webReturnBean.addMessage(resultMsg).addMessage("studentInfoId", studentInfo.getStudentInfoId());
-		return webReturnBean.getReturnMap();
+		resultMessage.addMessage(resultMsg).addMessage("studentInfoId", studentInfo.getStudentInfoId());
+		return resultMessage.getReturnMap();
 	}
 
 	@RequestMapping("edit")
@@ -81,7 +81,7 @@ public class StudentInfoController extends BaseController {
 	@ResponseBody
 	public Object delete() {
 		String resultMsg = null;
-		WebReturnBean webReturnBean = new WebReturnBean();
+		ResultMessage resultMessage = new ResultMessage();
 		String ids = request.getParameter("studentInfoIds");
 		if(ids != null && ids.trim().length() > 0) {
 			String[] ids_str = ids.split(",");
@@ -92,11 +92,11 @@ public class StudentInfoController extends BaseController {
 			List<Integer> idsList = Arrays.asList(ids_int);
 			this.studentInfoService.deleteList(idsList);
 			resultMsg = "删除数据成功";
-			webReturnBean.addMessage(resultMsg);
-			return webReturnBean.getReturnMap();
+			resultMessage.addMessage(resultMsg);
+			return resultMessage.getReturnMap();
 		}
 		resultMsg = "删除数据失败";
-		webReturnBean.addMessage(resultMsg);
-		return webReturnBean.getReturnMap();
+		resultMessage.addMessage(resultMsg);
+		return resultMessage.getReturnMap();
 	}
 }

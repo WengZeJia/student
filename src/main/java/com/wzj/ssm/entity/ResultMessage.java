@@ -3,20 +3,20 @@ package com.wzj.ssm.entity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebReturnBean {
+public class ResultMessage {
 	private static String DEFAULT_KEY = "returnMsg";
 	private Map<String, Object> returnMap = null;
 
-	public WebReturnBean() {
+	public ResultMessage() {
 		returnMap = new HashMap<String, Object>();
 	}
 
-	public WebReturnBean addMessage(Object object) {
+	public ResultMessage addMessage(Object object) {
 		this.returnMap.put(DEFAULT_KEY, object);
 		return this;
 	}
 	
-	public WebReturnBean addMessage(String returnKey, Object object) {
+	public ResultMessage addMessage(String returnKey, Object object) {
 		this.returnMap.put(returnKey, object);
 		return this;
 	}

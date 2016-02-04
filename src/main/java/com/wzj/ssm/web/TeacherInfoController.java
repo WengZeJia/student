@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wzj.ssm.entity.ResultMessage;
 import com.wzj.ssm.entity.TeacherInfo;
-import com.wzj.ssm.entity.WebReturnBean;
-import com.wzj.ssm.util.ContextUtil;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -50,7 +49,7 @@ public class TeacherInfoController extends BaseController {
 	@ResponseBody
 	public Object save(TeacherInfo teacherInfo) {
 		String resultMsg = null;
-		WebReturnBean webReturnBean = new WebReturnBean();
+		ResultMessage resultMessage = new ResultMessage();
 		Integer teacherInfoId = teacherInfo.getTeacherInfoId();
 		if (teacherInfoId == null || teacherInfoId == 0) {
 			resultMsg = "添加数据成功";
@@ -59,8 +58,8 @@ public class TeacherInfoController extends BaseController {
 			resultMsg = "更新数据成功";
 			teacherInfoService.updateByPrimaryKeySelective(teacherInfo);
 		}
-		webReturnBean.addMessage(resultMsg).addMessage("teacherInfoId", teacherInfo.getTeacherInfoId());
-		return webReturnBean.getReturnMap();
+		resultMessage.addMessage(resultMsg).addMessage("teacherInfoId", teacherInfo.getTeacherInfoId());
+		return resultMessage.getReturnMap();
 	}
 
 	@RequestMapping("edit")
@@ -82,7 +81,7 @@ public class TeacherInfoController extends BaseController {
 	@ResponseBody
 	public Object delete() {
 		String resultMsg = null;
-		WebReturnBean webReturnBean = new WebReturnBean();
+		ResultMessage resultMessage = new ResultMessage();
 		String ids = request.getParameter("teacherInfoIds");
 		if(ids != null && ids.trim().length() > 0) {
 			String[] ids_str = ids.split(",");
@@ -93,11 +92,11 @@ public class TeacherInfoController extends BaseController {
 			List<Integer> idsList = Arrays.asList(ids_int);
 			this.teacherInfoService.deleteList(idsList);
 			resultMsg = "删除数据成功";
-			webReturnBean.addMessage(resultMsg);
-			return webReturnBean.getReturnMap();
+			resultMessage.addMessage(resultMsg);
+			return resultMessage.getReturnMap();
 		}
 		resultMsg = "删除数据失败";
-		webReturnBean.addMessage(resultMsg);
-		return webReturnBean.getReturnMap();
+		resultMessage.addMessage(resultMsg);
+		return resultMessage.getReturnMap();
 	}
 }
