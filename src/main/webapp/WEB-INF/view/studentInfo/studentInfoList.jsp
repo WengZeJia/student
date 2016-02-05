@@ -65,14 +65,14 @@
         	}
         }
         $(function () {
-        	var getTeacherListUrl = "${ctx}/studentInfo/getAll.action";
+        	var getStudentListUrl = "${ctx}/studentInfo/getAll.action";
             window['g'] =
             $("#maingrid").ligerGrid({
             	checkbox: true,
                 height:'auto',
                 isScroll:false,
                 allowAdjustColWidth:false,
-                url: getTeacherListUrl,
+                url: getStudentListUrl,
                 columns: [
                 { display: '学号', name: 'number', width: 100, minWidth: 30 },
                 { display: '姓名', name: 'name', minWidth: 100 },
@@ -96,7 +96,9 @@
                 { line: true },
                 { text: '删除', click: deleteClick, icon: 'delete' },
                 { line: true },
-                { text: '查看', click: viewClick, icon: 'view' }
+                { text: '查看', click: viewClick, icon: 'view' },
+                { line: true },
+                { text: '入班', click: intoGradeClick, icon: 'role' }
                 ]
                 }
             });

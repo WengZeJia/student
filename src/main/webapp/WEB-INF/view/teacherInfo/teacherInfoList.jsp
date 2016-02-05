@@ -64,6 +64,58 @@
         		window.location.href = "edit.action?teacherInfoId="+rows[0].teacherInfoId + "&isReadOnly=" + true;
         	}
         }
+        
+        function intoGradeClick() {
+        	window.console.info("入班");
+        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
+        	if (rows == null || rows.length == 0) { 
+        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择至少一行',isDrag:false }); 
+        		setTimeout(function() {
+        			tip.close();
+        		},2000);
+        		return ;
+        	} else {
+        		var teacherInfoIds = "";
+        		for(var i = 0; i < rows.length; i++) {
+        			if(i == 0) {
+        				teacherInfoIds += rows[i].teacherInfoId
+        			} else {
+        				teacherInfoIds += "," + rows[i].teacherInfoId
+        			}
+        		}
+        		var url = "intoGrade.action?teacherInfoIds=" + teacherInfoIds;
+        		$.ligerDialog.open({
+                    height: 300,
+                    width: 600,
+                    title : '教师入班',
+                    url: url, 
+                    isDrag: false,
+                    showMax: false,
+                    showToggle: false,
+                    showMin: false,
+                    isResize: false,
+                    slide: false, 
+                    buttons: 
+                    [ 
+	                    {
+	                    	text: '确定', 
+	                    	onclick: function (item, dialog) {
+	                    		alert(item.text); 
+	                    	},
+	                    	cls:'l-dialog-btn-highlight'
+	                    },
+	                    { 
+	                    	text: '取消', 
+	                    	onclick: function (item, dialog) {
+	                    		dialog.close(); 
+	                    	}
+	                    }
+	                ]
+                });
+
+        	}
+        }
+        
         $(function () {
         	var getTeacherListUrl = "${ctx}/teacherInfo/getAll.action";
             window['g'] =
@@ -112,7 +164,9 @@
                 { line: true },
                 { text: '删除', click: deleteClick, icon: 'delete' },
                 { line: true },
-                { text: '查看', click: viewClick, icon: 'view' }
+                { text: '查看', click: viewClick, icon: 'view' },
+                { line: true },
+                { text: '入班', click: intoGradeClick, icon: 'role' }
                 ]
                 }
             });

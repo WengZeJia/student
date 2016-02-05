@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>教师信息表编辑</title>
+<title>学生信息表编辑</title>
 <%@ include file="/common/include/common.jsp"%>
 
 <script type="text/javascript">
@@ -37,10 +37,10 @@
 			<div class="tbar-title">
 				<c:choose>
 					<c:when test="${studentInfo.studentInfoId != null}">
-						<span class="tbar-label"><span></span>编辑教师主信息表</span>
+						<span class="tbar-label"><span></span>编辑学生主信息表</span>
 					</c:when>
 					<c:otherwise>
-						<span class="tbar-label"><span></span>添加教师主信息表</span>
+						<span class="tbar-label"><span></span>添加学生主信息表</span>
 					</c:otherwise>
 				</c:choose>
 			</div>

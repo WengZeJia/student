@@ -18,7 +18,7 @@
         		},2000);
         		return ;
         	} else {
-        		window.location.href = "edit.action?examId="+rows[0].examId;
+        		window.location.href = "edit.action?gradeId="+rows[0].gradeId;
         	}
         }
         function deleteClick() {
@@ -30,15 +30,15 @@
         		},2000);
         		return ;
         	} else {
-        		var examIds = "";
+        		var gradeIds = "";
         		for(var i = 0; i < rows.length; i++) {
         			if(i == 0) {
-        				examIds += rows[i].examId
+        				gradeIds += rows[i].gradeId
         			} else {
-        				examIds += "," + rows[i].examId
+        				gradeIds += "," + rows[i].gradeId
         			}
         		}
-        		var url = "delete.action?examIds=" + examIds;
+        		var url = "delete.action?gradeIds=" + gradeIds;
         		$.ajax({
         			   type: "GET",
         			   url: url,
@@ -61,24 +61,24 @@
         		},2000);
         		return ;
         	} else {
-        		window.location.href = "edit.action?examId="+rows[0].examId + "&isReadOnly=" + true;
+        		window.location.href = "edit.action?gradeId="+rows[0].gradeId + "&isReadOnly=" + true;
         	}
         }
         $(function () {
-        	var getExamListUrl = "${ctx}/exam/getAll.action";
+        	var getTeacherListUrl = "${ctx}/grade/getAll.action";
             window['g'] =
             $("#maingrid").ligerGrid({
             	checkbox: true,
                 height:'auto',
                 isScroll:false,
                 allowAdjustColWidth:false,
-                url: getExamListUrl,
+                url: getTeacherListUrl,
                 columns: [
-                { display: '考试名称', name: 'name', minWidth: 100 },
-                { display: '考试科目', name: 'subject.name', minWidth: 100 }
+                { display: '班级名称', name: 'name', minWidth: 100 },
+                { display: '学生数量', name: 'studentCount', minWidth: 100 }
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [
-                { text: '发起考试', click: addClick, icon: 'add' },
+                { text: '添加', click: addClick, icon: 'add' },
                 { line: true },
                 { text: '编辑', click: modifyClick, icon: 'modify' },
                 { line: true },

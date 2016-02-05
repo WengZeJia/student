@@ -6,7 +6,7 @@
 <link href="${ctx}/common/ligerui_lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />  
 <link rel="stylesheet" type="text/css" id="mylink"/>
 <link href="${ctx}/common/ligerui_lib/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css" />
-<link href="${ctx}/common/ligerui_lib/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/common/ligerui_lib/ligerUI/skins/Gray2014/css/all.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/common/otherui_lib/css/web.css" rel="stylesheet" type="text/css" />
 <script src="${ctx}/common/ligerui_lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>    
 <script src="${ctx}/common/ligerui_lib/ligerUI/js/ligerui.all.js" type="text/javascript"></script> 

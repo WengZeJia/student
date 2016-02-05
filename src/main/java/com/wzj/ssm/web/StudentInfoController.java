@@ -99,4 +99,13 @@ public class StudentInfoController extends BaseController {
 		resultMessage.addMessage(resultMsg);
 		return resultMessage.getReturnMap();
 	}
+	
+	@RequestMapping("/intoGrade")
+	public ModelAndView intoGrade() {
+		try {
+			return this.getAutoView();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
