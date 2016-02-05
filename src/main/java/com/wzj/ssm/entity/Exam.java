@@ -5,6 +5,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.wzj.ssm.util.ContextUtil;
 @Table(name = "t_exam")
 public class Exam extends BaseModel {
 	@Id
@@ -49,6 +51,8 @@ public class Exam extends BaseModel {
 
 	public void setTeacherInfo(TeacherInfo teacherInfo) {
 		this.teacherInfo = teacherInfo;
+		if ((teacherInfo == null) || (teacherInfo.getTeacherInfoId().intValue() == 0))
+			this.teacherInfo = ContextUtil.getCurrentTeacher();
 	}
 
 	public String getDescription() {
