@@ -23,6 +23,7 @@ import com.wzj.ssm.service.SchoolService;
 import com.wzj.ssm.service.StudentInfoService;
 import com.wzj.ssm.service.SubjectService;
 import com.wzj.ssm.service.TeacherInfoService;
+import com.wzj.ssm.service.YearService;
 import com.wzj.ssm.util.StringUtil;
 
 
@@ -43,6 +44,8 @@ public class BaseController {
 	protected GradeService gradeService;
 	@Resource
 	protected MarkService markService;
+	@Resource
+	protected YearService yearService;
 	@Resource
 	protected SchoolService schoolService;
 	@Resource

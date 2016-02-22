@@ -32,6 +32,8 @@ drop table if exists t_teacher_grade_middle;
 
 drop table if exists t_teacher_info;
 
+drop table if exists t_year;
+
 /*==============================================================*/
 /* Table: t_exam                                                */
 /*==============================================================*/
@@ -57,14 +59,15 @@ alter table t_exam comment '考试表';
 create table t_grade
 (
    grade_id             int not null auto_increment,
-   name                 varchar(50) not null,
-   student_count        int,
-   school_id            int,
-   description          varchar(200),
-   createBy             int,
-   createTime           date,
-   updateBy             int,
-   updateTime           date,
+   name                 varchar(50) not null comment '班级名称',
+   student_count        int comment '学生数量',
+   year_id              int comment '所属年级',
+   school_id            int comment '所属学校',
+   description          varchar(200) comment '简介',
+   createBy             int comment '创建人',
+   createTime           date comment '创建时间',
+   updateBy             int comment '更新人',
+   updateTime           date comment '更新时间',
    primary key (grade_id)
 );
 
@@ -372,7 +375,7 @@ create table t_teacher_info
    password             varchar(100),
    name                 varchar(20),
    gender               varchar(2),
-   age					int,
+   age                  int,
    subject_ids          varchar(30),
    phone                varchar(30),
    email                varchar(30),
@@ -390,6 +393,23 @@ create table t_teacher_info
 
 alter table t_teacher_info comment '教师表';
 
+/*==============================================================*/
+/* Table: t_year                                                */
+/*==============================================================*/
+create table t_year
+(
+   year_id              int not null auto_increment comment '年级ID',
+   name                 varchar(50) comment '年级名称',
+   description          varchar(200) comment '学校简介',
+   createBy             int,
+   createTime           date,
+   updateBy             int,
+   updateTime           date,
+   primary key (year_id)
+);
+
+alter table t_year comment '年级';
+
 alter table t_exam add constraint FK_Reference_5 foreign key (subject_id)
       references t_subject (subject_id) on delete restrict on update restrict;
 
@@ -398,6 +418,9 @@ alter table t_exam add constraint FK_Reference_6 foreign key (teacher_id)
 
 alter table t_grade add constraint FK_Reference_1 foreign key (school_id)
       references t_school (school_id) on delete restrict on update restrict;
+
+alter table t_grade add constraint FK_Reference_17 foreign key (year_id)
+      references t_year (year_id) on delete restrict on update restrict;
 
 alter table t_grade_exam_middle add constraint FK_Reference_7 foreign key (grade_id)
       references t_grade (grade_id) on delete restrict on update restrict;

@@ -14,9 +14,13 @@ public class Grade extends BaseModel {
     private String name;
 
     private Integer studentCount;
+    
+    @Transient
+    private Year year;//所属年级
+    
     @Transient
     private School school;
-
+    
     private String description;
 
     public Integer getGradeId() {
@@ -43,7 +47,15 @@ public class Grade extends BaseModel {
         this.studentCount = studentCount;
     }
 
-    public School getSchool() {
+    public Year getYear() {
+		return year;
+	}
+
+	public void setYear(Year year) {
+		this.year = year;
+	}
+
+	public School getSchool() {
 		return school;
 	}
 

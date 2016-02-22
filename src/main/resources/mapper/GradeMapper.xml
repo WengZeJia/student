@@ -11,5 +11,6 @@
     <result column="updateBy" property="updateby" jdbcType="INTEGER" />
     <result column="updateTime" property="updatetime" jdbcType="DATE" />
     <association column="school_id" property="school" resultMap="com.wzj.ssm.entity.School.BaseResultMap" />
+    <association column="year_id" property="year" resultMap="com.wzj.ssm.entity.Year.BaseResultMap" />
   </resultMap>
 </mapper>

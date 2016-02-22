@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wzj.ssm.dao.modelMapper.YearMapper" >
+  <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.Year" >
+    <id column="year_id" property="schoolId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="createBy" property="createby" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="DATE" />
+    <result column="updateBy" property="updateby" jdbcType="INTEGER" />
+    <result column="updateTime" property="updatetime" jdbcType="DATE" />
+  </resultMap>
+</mapper>

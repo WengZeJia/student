@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wzj.ssm.entity.Grade;
 import com.wzj.ssm.entity.ResultMessage;
+import com.wzj.ssm.entity.Year;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -19,10 +19,10 @@ import com.wzj.ssm.util.StringUtil;
  * 采用拦截器,完成用户登陆的过滤
  * 
  */
-@RequestMapping("/grade")
+@RequestMapping("/year")
 @Controller
 // 开启注解扫描机制
-public class GradeController extends BaseController {
+public class YearController extends BaseController {
 
 	@RequestMapping("/list")
 	public ModelAndView list() {
@@ -37,27 +37,27 @@ public class GradeController extends BaseController {
 	@ResponseBody
 	public Object getList() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Grade> gradeList = gradeService.selectAll();
-		int total = gradeList.size();
-		map.put("Rows", gradeList);
+		List<Year> yearList = yearService.selectAll();
+		int total = yearList.size();
+		map.put("Rows", yearList);
 		map.put("Total", total);
 		return map;
 	}
 
 	@RequestMapping("/save")
 	@ResponseBody
-	public Object save(Grade grade) {
+	public Object save(Year year) {
 		String resultMsg = null;
 		ResultMessage resultMessage = new ResultMessage();
-		Integer gradeId = grade.getGradeId();
-		if (gradeId == null || gradeId == 0) {
+		Integer yearId = year.getYearId();
+		if (yearId == null || yearId == 0) {
 			resultMsg = "添加数据成功";
-			gradeService.insertSelective(grade);
+			yearService.insertSelective(year);
 		} else {
 			resultMsg = "更新数据成功";
-			gradeService.updateByPrimaryKeySelective(grade);
+			yearService.updateByPrimaryKeySelective(year);
 		}
-		resultMessage.addMessage(resultMsg).addMessage("gradeId", grade.getGradeId());
+		resultMessage.addMessage(resultMsg).addMessage("yearId", year.getYearId());
 		return resultMessage.getReturnMap();
 	}
 
@@ -65,11 +65,11 @@ public class GradeController extends BaseController {
 	public ModelAndView edit() {
 		ModelAndView mv = null;
 		try {
-			String gradeIdStr = request.getParameter("gradeId");
+			String yearIdStr = request.getParameter("yearId");
 			String isReadOnly = request.getParameter("isReadOnly");
-			Integer gradeId = StringUtil.parseIntIsNullGetDef(gradeIdStr, 0);
-			Grade gradeDB = gradeService.selectByPrimaryKey(gradeId);
-			mv = getAutoView().addObject("grade", gradeDB).addObject("isReadOnly", isReadOnly);
+			Integer yearId = StringUtil.parseIntIsNullGetDef(yearIdStr, 0);
+			Year yearDB = yearService.selectByPrimaryKey(yearId);
+			mv = getAutoView().addObject("year", yearDB).addObject("isReadOnly", isReadOnly);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

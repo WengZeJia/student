@@ -18,7 +18,7 @@
         		},2000);
         		return ;
         	} else {
-        		window.location.href = "edit.action?gradeId="+rows[0].gradeId;
+        		window.location.href = "edit.action?yearId="+rows[0].yearId;
         	}
         }
         function deleteClick() {
@@ -30,15 +30,15 @@
         		},2000);
         		return ;
         	} else {
-        		var gradeIds = "";
+        		var yearIds = "";
         		for(var i = 0; i < rows.length; i++) {
         			if(i == 0) {
-        				gradeIds += rows[i].gradeId
+        				yearIds += rows[i].yearId
         			} else {
-        				gradeIds += "," + rows[i].gradeId
+        				yearIds += "," + rows[i].yearId
         			}
         		}
-        		var url = "delete.action?gradeIds=" + gradeIds;
+        		var url = "delete.action?yearIds=" + yearIds;
         		$.ajax({
         			   type: "GET",
         			   url: url,
@@ -61,11 +61,11 @@
         		},2000);
         		return ;
         	} else {
-        		window.location.href = "edit.action?gradeId="+rows[0].gradeId + "&isReadOnly=" + true;
+        		window.location.href = "edit.action?yearId="+rows[0].yearId + "&isReadOnly=" + true;
         	}
         }
         $(function () {
-        	var getTeacherListUrl = "${ctx}/grade/getAll.action";
+        	var getTeacherListUrl = "${ctx}/year/getAll.action";
             window['g'] =
             $("#maingrid").ligerGrid({
             	checkbox: true,
@@ -74,9 +74,7 @@
                 allowAdjustColWidth:false,
                 url: getTeacherListUrl,
                 columns: [
-                { display: '班级名称', name: 'name', minWidth: 100 },
-                { display: '年级', name: 'year', minWidth: 100 },
-                { display: '学生数量', name: 'studentCount', minWidth: 100 }
+                { display: '年级名称', name: 'name', minWidth: 100 },
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [
                 { text: '添加', click: addClick, icon: 'add' },

@@ -22,6 +22,7 @@ import com.wzj.ssm.dao.modelMapper.SysPrivilegeMapper;
 import com.wzj.ssm.dao.modelMapper.SysRoleMapper;
 import com.wzj.ssm.dao.modelMapper.SysUrlMapper;
 import com.wzj.ssm.dao.modelMapper.TeacherInfoMapper;
+import com.wzj.ssm.dao.modelMapper.YearMapper;
 import com.wzj.ssm.entity.QueryCondition;
 import com.wzj.ssm.service.BaseService;
 
@@ -43,6 +44,8 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 	protected GradeMapper gradeMapper;
 	@Resource
 	protected MarkMapper markMapper;
+	@Resource
+	protected YearMapper yearMapper;
 	@Resource
 	protected SchoolMapper schoolMapper;
 	@Resource
