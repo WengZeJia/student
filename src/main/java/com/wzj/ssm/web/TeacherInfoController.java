@@ -1,5 +1,6 @@
 package com.wzj.ssm.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -100,12 +101,4 @@ public class TeacherInfoController extends BaseController {
 		return resultMessage.getReturnMap();
 	}
 	
-	@RequestMapping("/intoGrade")
-	public ModelAndView intoGrade() {
-		try {
-			return this.getAutoView();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
 }

@@ -1,6 +1,7 @@
 package com.wzj.ssm.entity;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.GeneratedValue;
@@ -46,6 +47,9 @@ public class TeacherInfo extends BaseModel implements UserDetails {
     //spring security要求实现userDetails接口的类需要返回一个GrantedAuthority列表
     @Transient
     private Set<SysRole> sysRoleSet;
+    
+    @Transient
+    private List<Grade> gradeList;
 
     public Integer getTeacherInfoId() {
         return teacherInfoId;
@@ -190,4 +194,13 @@ public class TeacherInfo extends BaseModel implements UserDetails {
 	public void setSysRoleSet(Set<SysRole> sysRoleSet) {
 		this.sysRoleSet = sysRoleSet;
 	}
+
+	public List<Grade> getGradeList() {
+		return gradeList;
+	}
+
+	public void setGradeList(List<Grade> gradeList) {
+		this.gradeList = gradeList;
+	}
+	
 }

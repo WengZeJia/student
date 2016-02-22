@@ -64,6 +64,60 @@
         		window.location.href = "edit.action?studentInfoId="+rows[0].studentInfoId + "&isReadOnly=" + true;
         	}
         }
+        
+        function intoGradeClick() {
+        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
+        	if (rows == null || rows.length == 0) { 
+        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择至少一行',isDrag:false }); 
+        		setTimeout(function() {
+        			tip.close();
+        		},2000);
+        		return ;
+        	} else {
+        		var studentInfoIds = "";
+        		for(var i = 0; i < rows.length; i++) {
+        			if(i == 0) {
+        				studentInfoIds += rows[i].studentInfoId
+        			} else {
+        				studentInfoIds += "," + rows[i].studentInfoId
+        			}
+        		}
+        		
+        		var url = "intoGrade.action";
+        		$.ligerDialog.open({
+                    height: 300,
+                    width: 600,
+                    title: '学生入班',
+                    data: rows,
+                    url: url, 
+                    isDrag: false,
+                    showMax: false,
+                    showToggle: false,
+                    showMin: false,
+                    isResize: false,
+                    slide: false, 
+                    buttons: 
+                    [ 
+	                    {
+	                    	text: '确定', 
+	                    	onclick: function (item, dialog) {
+	                    		alert(item.text); 
+	                    		window.console.info(dialog);
+	                    	},
+	                    	cls:'l-dialog-btn-highlight'
+	                    },
+	                    { 
+	                    	text: '取消', 
+	                    	onclick: function (item, dialog) {
+	                    		dialog.close(); 
+	                    	}
+	                    }
+	                ]
+                });
+
+        	}
+        }
+        
         $(function () {
         	var getStudentListUrl = "${ctx}/studentInfo/getAll.action";
             window['g'] =

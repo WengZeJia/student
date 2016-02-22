@@ -6,7 +6,24 @@
     <title>教师入班</title>
     <%@ include file="/common/include/common.jsp" %>
     <script type="text/javascript">
+	
+
+	 
 	$(function () {
+		//从父窗口页面获取选中的数组，然后用ligerCheckBoxList加载数据
+	    var parentDialog = frameElement.dialog;
+        var parentDialogData = parentDialog.get('data');//获取data参数
+        if(parentDialogData.length > 0) {
+        	$("#checkedTeacher").ligerCheckBoxList({
+        		rowSize: 6,
+                data: parentDialogData,
+                name: "teacherInfoId",
+                valueField: "teacherInfoId",
+                textField: 'name'
+            });
+        }
+        $(":checkbox","#checkedTeacher").attr("checked", true);
+        
 		var getGradeListUrl = "${ctx}/grade/getAll.action";
 	    window['g'] =
 	    $("#maingrid").ligerGrid({
@@ -25,6 +42,7 @@
 	</script>
 </head>
 <body style="overflow:hidden; padding:2px;">
+    <h4>入班教师：</h4><div id="checkedTeacher"></div>
 	<div id="maingrid"></div>
 </body>
 </html>
