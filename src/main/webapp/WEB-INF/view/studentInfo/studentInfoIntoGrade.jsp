@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>教师入班</title>
+    <title>学生入班</title>
     <%@ include file="/common/include/common.jsp" %>
     <script type="text/javascript">
 	

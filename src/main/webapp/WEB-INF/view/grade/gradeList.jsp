@@ -85,7 +85,9 @@
                 { line: true },
                 { text: '删除', click: deleteClick, icon: 'delete' },
                 { line: true },
-                { text: '查看', click: viewClick, icon: 'view' }
+                { text: '查看', click: viewClick, icon: 'view' },
+                { line: true },
+                { text: '点名', click: viewClick, icon: 'callName' }
                 ]
                 }
             });
