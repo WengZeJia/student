@@ -5,7 +5,7 @@
     <id column="student_id" property="studentId" jdbcType="INTEGER" />
     <result column="number" property="number" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
     <result column="age" property="age" jdbcType="INTEGER" />
     <result column="gender" property="gender" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -25,4 +25,11 @@
 		#{idItem}
 	</foreach>
   </delete>
+  
+   <select id="getStudentsByGradeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT si.* 
+  	FROM t_student_info AS si 
+  	WHERE 
+  		si.grade_id = #{gradeId}
+  </select>
 </mapper>

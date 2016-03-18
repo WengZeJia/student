@@ -14,6 +14,7 @@
 		}
 		
 		$("#dataFormSave",$("div .panel-toolbar")).click(function() {
+			console.info($("#saveForm").serializeArray());
 			$.ajax({
 				   type: "POST",
 				   url: $("#saveForm").attr("action"),
@@ -26,7 +27,23 @@
 					   }
 				   }
 				});
-		})
+		});
+		
+		
+	$("#yearBox").ligerComboBox({
+			url : 'getYearList.action',
+			valueField : 'yearId',
+			textField : 'name',
+			selectBoxWidth : 250,
+			width : 250,
+			initValue: $("#yearId").val(),
+			initText: $("#yearId").val(),
+			hideOnLoseFocus: false,
+			onSelected: function(id, name) {
+				$("#yearId").val(id);
+			}
+		});
+
 	})
 </script>
 </head>
@@ -62,10 +79,20 @@
 				<tr>
 					<th width="20%">班级名称:<span class="required"
 						style="color: red;">*</span></th>
-					<td><input type="text" style="width: 93%"  name="name" value="${grade.name }" /></td>
+					<td><input type="text" style="width: 93%"  name="gradeName" value="${grade.gradeName }" /></td>
 					<th width="20%">学生数量:</th>
 					<td><input type="text" style="width: 93%" name="studentCount"
 						value="${grade.studentCount }" /></td>
+				</tr>
+				<tr>
+					<th width="20%">所属年级<span class="required"
+						style="color: red;">*</span></th>
+					<td>
+						<input type="text" id="yearBox" />
+						<input type="hidden" id="yearId" name="year.yearId" value="${grade.year.yearId }" />
+					</td>
+					<th width="20%"></th>
+					<td></td>
 				</tr>
 				<tr>
 					<th width="20%">备注:</th>

@@ -11,7 +11,7 @@ public class Grade extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer gradeId;
 
-    private String name;
+    private String gradeName;
 
     private Integer studentCount;
     
@@ -31,15 +31,15 @@ public class Grade extends BaseModel {
 		this.gradeId = gradeId;
 	}
 
-	public String getName() {
-        return name;
-    }
+    public String getGradeName() {
+		return gradeName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setGradeName(String gradeName) {
+		this.gradeName = gradeName;
+	}
 
-    public Integer getStudentCount() {
+	public Integer getStudentCount() {
         return studentCount;
     }
 

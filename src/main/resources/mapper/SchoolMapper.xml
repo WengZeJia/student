@@ -3,7 +3,7 @@
 <mapper namespace="com.wzj.ssm.dao.modelMapper.SchoolMapper" >
   <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.School" >
     <id column="school_id" property="schoolId" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="school_name" property="schoolName" jdbcType="VARCHAR" />
     <result column="school_type" property="schoolType" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="createBy" property="createby" jdbcType="INTEGER" />

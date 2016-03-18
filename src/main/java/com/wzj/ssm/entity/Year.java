@@ -10,7 +10,7 @@ public class Year extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer yearId;
 
-    private String name;
+    private String yearName;
 
     private String description;
     
@@ -23,15 +23,15 @@ public class Year extends BaseModel {
 		this.yearId = yearId;
 	}
 
-	public String getName() {
-        return name;
-    }
+    public String getYearName() {
+		return yearName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setYearName(String yearName) {
+		this.yearName = yearName;
+	}
 
-    public String getDescription() {
+	public String getDescription() {
         return description;
     }
 

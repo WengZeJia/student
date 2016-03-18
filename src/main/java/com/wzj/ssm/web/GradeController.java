@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wzj.ssm.entity.Grade;
 import com.wzj.ssm.entity.ResultMessage;
+import com.wzj.ssm.entity.StudentInfo;
+import com.wzj.ssm.entity.Year;
+import com.wzj.ssm.service.StudentInfoService;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -52,11 +55,10 @@ public class GradeController extends BaseController {
 		Integer gradeId = grade.getGradeId();
 		if (gradeId == null || gradeId == 0) {
 			resultMsg = "添加数据成功";
-			gradeService.insertSelective(grade);
 		} else {
 			resultMsg = "更新数据成功";
-			gradeService.updateByPrimaryKeySelective(grade);
 		}
+		gradeService.saveGrade(grade);
 		resultMessage.addMessage(resultMsg).addMessage("gradeId", grade.getGradeId());
 		return resultMessage.getReturnMap();
 	}
@@ -68,7 +70,7 @@ public class GradeController extends BaseController {
 			String gradeIdStr = request.getParameter("gradeId");
 			String isReadOnly = request.getParameter("isReadOnly");
 			Integer gradeId = StringUtil.parseIntIsNullGetDef(gradeIdStr, 0);
-			Grade gradeDB = gradeService.selectByPrimaryKey(gradeId);
+			Grade gradeDB = gradeService.getGradeJoinYearById(gradeId);
 			mv = getAutoView().addObject("grade", gradeDB).addObject("isReadOnly", isReadOnly);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -76,4 +78,21 @@ public class GradeController extends BaseController {
 		return mv;
 	}
 	
+	@RequestMapping("/call")
+	public ModelAndView call() {
+		try {
+			String gradeIdStr = request.getParameter("gradeId");
+			Integer gradeId = StringUtil.parseIntIsNullGetDef(gradeIdStr, 0);
+			List<StudentInfo> studentList = studentInfoService.getStudentsByGradeId(gradeId);
+			return this.getAutoView().addObject("studentList", studentList);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	@RequestMapping("/getYearList")
+	@ResponseBody
+	public Object getYearList() {
+		return yearService.selectAll();
+	}
 }

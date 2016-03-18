@@ -10,7 +10,7 @@ public class Subject extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer subjectId;
 
-    private String name;
+    private String subjectName;
 
     private String description;
 
@@ -22,15 +22,15 @@ public class Subject extends BaseModel {
 		this.subjectId = subjectId;
 	}
 
-	public String getName() {
-        return name;
-    }
+    public String getSubjectName() {
+		return subjectName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
 
-    public String getDescription() {
+	public String getDescription() {
         return description;
     }
 

@@ -9,4 +9,6 @@ public interface StudentInfoMapper extends BaseMapper<StudentInfo> {
 
 	public void deleteList(List<Integer> idsList);
 
+	public List<StudentInfo> getStudentsByGradeId(Integer gradeId);
+
 }

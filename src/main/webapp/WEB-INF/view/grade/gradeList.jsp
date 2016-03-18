@@ -64,6 +64,32 @@
         		window.location.href = "edit.action?gradeId="+rows[0].gradeId + "&isReadOnly=" + true;
         	}
         }
+        
+        function callClick() {
+        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
+        	if (rows == null || rows.length != 1) { 
+        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择一行',isDrag:false }); 
+        		setTimeout(function() {
+        			tip.close();
+        		},2000);
+        		return ;
+        	} else {
+        		var gradeIds = "";
+        		for(var i = 0; i < rows.length; i++) {
+        			if(i == 0) {
+        				gradeIds += rows[i].gradeId
+        			} else {
+        				gradeIds += "," + rows[i].gradeId
+        			}
+        		}
+        		var askBool = window.confirm("现在是要点名"+rows[0].name+"的小盆友吗？");
+				if (askBool) {
+					var url = "call.action?gradeId="+rows[0].gradeId;
+	        		window.open(url); 
+				}
+        	}
+        }
+        
         $(function () {
         	var getTeacherListUrl = "${ctx}/grade/getAll.action";
             window['g'] =
@@ -87,7 +113,7 @@
                 { line: true },
                 { text: '查看', click: viewClick, icon: 'view' },
                 { line: true },
-                { text: '点名', click: viewClick, icon: 'callName' }
+                { text: '点名', click: callClick, icon: 'memeber' }
                 ]
                 }
             });

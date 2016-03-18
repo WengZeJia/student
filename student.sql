@@ -40,7 +40,7 @@ drop table if exists t_year;
 create table t_exam
 (
    exam_id              int not null auto_increment,
-   name                 varchar(50) comment '考试名称',
+   exam_name            varchar(50) comment '考试名称',
    subject_id           int,
    teacher_id           int comment '发起考试的教师',
    description          varchar(200),
@@ -59,15 +59,15 @@ alter table t_exam comment '考试表';
 create table t_grade
 (
    grade_id             int not null auto_increment,
-   name                 varchar(50) not null comment '班级名称',
-   student_count        int comment '学生数量',
-   year_id              int comment '所属年级',
-   school_id            int comment '所属学校',
-   description          varchar(200) comment '简介',
-   createBy             int comment '创建人',
-   createTime           date comment '创建时间',
-   updateBy             int comment '更新人',
-   updateTime           date comment '更新时间',
+   grade_name           varchar(50) not null,
+   student_count        int,
+   year_id              int,
+   school_id            int,
+   description          varchar(200),
+   createBy             int,
+   createTime           date,
+   updateBy             int,
+   updateTime           date,
    primary key (grade_id)
 );
 
@@ -78,7 +78,7 @@ alter table t_grade comment '班级';
 /*==============================================================*/
 create index Index_grade_name on t_grade
 (
-   name
+   grade_name
 );
 
 /*==============================================================*/
@@ -148,7 +148,7 @@ create index Index_student_exam_grade on t_mark
 create table t_school
 (
    school_id            int not null auto_increment,
-   name                 varchar(50) comment '学校名称',
+   school_name          varchar(50) comment '学校名称',
    school_type          varchar(2) comment '学校的类型。gb:公办;sb:私办',
    description          varchar(200) comment '学校简介',
    createBy             int,
@@ -168,7 +168,7 @@ create table t_student_info
    student_info_id      int not null auto_increment,
    number               varchar(20) not null,
    password             varchar(100),
-   name                 varchar(20),
+   student_name         varchar(20),
    age                  int,
    gender               varchar(2),
    grade_id             int,
@@ -198,7 +198,7 @@ create index Index_number on t_student_info
 create table t_subject
 (
    subject_id           int not null auto_increment,
-   name                 varchar(50) not null,
+   subject_name         varchar(50) not null,
    description          varchar(200),
    createBy             int,
    createTime           date,
@@ -214,7 +214,7 @@ alter table t_subject comment '科目表';
 /*==============================================================*/
 create index Index_subject_name on t_subject
 (
-   name
+   subject_name
 );
 
 /*==============================================================*/
@@ -373,7 +373,7 @@ create table t_teacher_info
    teacher_info_id      int not null auto_increment,
    number               varchar(20),
    password             varchar(100),
-   name                 varchar(20),
+   teacher_name         varchar(20),
    gender               varchar(2),
    age                  int,
    subject_ids          varchar(30),
@@ -399,8 +399,8 @@ alter table t_teacher_info comment '教师表';
 create table t_year
 (
    year_id              int not null auto_increment comment '年级ID',
-   name                 varchar(50) comment '年级名称',
-   description          varchar(200) comment '学校简介',
+   year_name            varchar(50) comment '年级名称',
+   description          varchar(200) comment '年级简介',
    createBy             int,
    createTime           date,
    updateBy             int,

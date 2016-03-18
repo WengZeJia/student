@@ -64,8 +64,8 @@
 					<td><input type="text" style="width: 93%" name="number"
 						value="${teacherInfo.number }" /></td>
 					<th width="20%">姓名:</th>
-					<td><input type="text" style="width: 93%" name="name"
-						value="${teacherInfo.name }" /></td>
+					<td><input type="text" style="width: 93%" name="teacherName"
+						value="${teacherInfo.teacherName }" /></td>
 				</tr>
 				<tr>
 					<th width="20%">性别:</th>

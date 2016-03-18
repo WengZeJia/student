@@ -13,7 +13,7 @@ public class Exam extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer examId;
 
-    private String name;
+    private String examName;
     @Transient
     private Subject subject;
     @Transient
@@ -29,15 +29,15 @@ public class Exam extends BaseModel {
 		this.examId = examId;
 	}
 
-	public String getName() {
-        return name;
-    }
+    public String getExamName() {
+		return examName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setExamName(String examName) {
+		this.examName = examName;
+	}
 
-    public Subject getSubject() {
+	public Subject getSubject() {
 		return subject;
 	}
 

@@ -256,23 +256,27 @@
             <option value="gray2014">Gray2014</option>
         </select>
         <span>
-       		<label> ${sessionScope.login_teacherInfo.name },你好 &nbsp;</label>
+       		<label> ${sessionScope.login_teacherInfo.teacherName },你好 &nbsp;</label>
         	<a href="${ctx }/j_spring_security_logout.action">退出</a>
         </span>
     </div> 
 </div>
   <div id="layout1" style="width:99.2%; margin:0 auto; margin-top:4px; "> 
         <div position="left"  title="主要菜单" id="accordion1"> 
-                     <div title="教师管理" class="l-scroll">
-                         <a class="l-link" href="javascript:f_addTab('teacher_listpage','教师列表页面','${ctx }/teacherInfo/list.action')">教师管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('grade_listpage','班级列表页面', '${ctx }/grade/list.action')">班级管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('exam_listpage','考试列表页面','${ctx }/exam/list.action')">考试管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('year_listpage','年级列表页面', '${ctx }/year/list.action')">年级管理</a> 
-                         <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面', '${ctx }/studentInfo/list.action')">学生管理</a> 
-                    </div>
-                    <div title="系统管理">
-                    <div style=" height:7px;"></div>
-                    </div> 
+             <div title="教师管理" class="l-scroll">
+                  <a class="l-link" href="javascript:f_addTab('teacher_listpage','教师列表页面','${ctx }/teacherInfo/list.action')">教师管理</a> 
+                  <a class="l-link" href="javascript:f_addTab('exam_listpage','考试列表页面','${ctx }/exam/list.action')">考试管理</a> 
+                  <a class="l-link" href="javascript:f_addTab('year_listpage','年级列表页面', '${ctx }/year/list.action')">年级管理</a> 
+                  <a class="l-link" href="javascript:f_addTab('grade_listpage','班级列表页面', '${ctx }/grade/list.action')">班级管理</a> 
+                  <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面', '${ctx }/studentInfo/list.action')">学生管理</a> 
+             </div>
+             <div title="班级管理">
+             <div style=" height:7px;"></div>
+                  <a class="l-link" href="${ctx }/grade/call.action" target="_Blank">班级点名</a> 
+             </div>
+             <div title="系统管理">
+             <div style=" height:7px;"></div>
+             </div> 
         </div>
         <div position="center" id="framecenter"> 
             <div tabid="home" title="我的主页" style="height:300px" >

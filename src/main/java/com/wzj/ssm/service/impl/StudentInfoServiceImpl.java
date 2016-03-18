@@ -13,4 +13,8 @@ public class StudentInfoServiceImpl extends BaseServiceImpl<StudentInfo> impleme
 	public void deleteList(List<Integer> idsList) {
 		this.studentInfoMapper.deleteList(idsList);
 	}
+
+	public List<StudentInfo> getStudentsByGradeId(Integer gradeId) {
+		return this.studentInfoMapper.getStudentsByGradeId(gradeId);
+	}
 }

@@ -50,7 +50,7 @@ public class SpringTest extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testSchoolDaoInsert() {
 		School school = new School();
-		school.setName("九洲基小学");
+		school.setSchoolName("九洲基小学");
 		school.setSchoolType("gb");
 		school.setDescription("垃圾学校");
 		schoolMapper.insert(school);
@@ -59,20 +59,20 @@ public class SpringTest extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testSchoolDaoSel() {
 		School school = schoolMapper.selectByPrimaryKey(1);
-		System.out.println("id:" + school.getSchoolId() + "\tname:" + school.getName() + "\tschool_type:" + school.getSchoolType() + "\tdescription:" + school.getDescription());
+		System.out.println("id:" + school.getSchoolId() + "\tname:" + school.getSchoolName() + "\tschool_type:" + school.getSchoolType() + "\tdescription:" + school.getDescription());
 	}
 	
 	@Test
 	public void testSchoolDaoUpdate() {
 		School school = schoolMapper.selectByPrimaryKey(1);
-		school.setName("菊城小学");
+		school.setSchoolName("菊城小学");
 		schoolMapper.updateByPrimaryKey(school);
 	}
 	
 	@Test
 	public void testSchoolServiceSel() {
 		School school = schoolService.selectByPrimaryKey(1);
-		System.out.println("id:" + school.getSchoolId() + "\tname:" + school.getName() + "\tschool_type:" + school.getSchoolType() + "\tdescription:" + school.getDescription());
+		System.out.println("id:" + school.getSchoolId() + "\tname:" + school.getSchoolName() + "\tschool_type:" + school.getSchoolType() + "\tdescription:" + school.getDescription());
 	}
 	
 	@Test

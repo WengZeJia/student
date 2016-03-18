@@ -15,7 +15,7 @@ public class StudentInfo extends BaseModel {
     
     private String password;
 
-    private String name;
+    private String studentName;
 
     private Integer age;
 
@@ -54,15 +54,15 @@ public class StudentInfo extends BaseModel {
         this.number = number == null ? null : number.trim();
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getStudentName() {
+		return studentName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
 
-    public Integer getAge() {
+	public Integer getAge() {
         return age;
     }
 

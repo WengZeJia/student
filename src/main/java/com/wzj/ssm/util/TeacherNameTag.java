@@ -35,7 +35,7 @@ public class TeacherNameTag extends BodyTagSupport {
 		if (this.isDefaultUser.booleanValue()) {
 			TeacherInfo teacherInfo = ContextUtil.getCurrentTeacher();
 			if (teacherInfo != null) {
-				noData = teacherInfo.getName();
+				noData = teacherInfo.getTeacherName();
 			}
 		}
 		if (this.teacherInfoId.intValue() != 0) {
@@ -44,8 +44,8 @@ public class TeacherNameTag extends BodyTagSupport {
 			if (teacherInfo == null) {
 				return noData;
 			}
-			teacherName = teacherInfo.getName();
-			if (StringUtils.isEmpty(teacherInfo.getName())) {
+			teacherName = teacherInfo.getTeacherName();
+			if (StringUtils.isEmpty(teacherInfo.getTeacherName())) {
 				teacherName = teacherInfo.getNumber();
 			}
 		}

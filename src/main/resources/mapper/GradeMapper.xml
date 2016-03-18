@@ -1,16 +1,138 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wzj.ssm.entity.Grade" >
-  <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.Grade" >
-    <id column="grade_id" property="gradeId" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="student_count" property="studentCount" jdbcType="INTEGER" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="createBy" property="createby" jdbcType="INTEGER" />
-    <result column="createTime" property="createtime" jdbcType="DATE" />
-    <result column="updateBy" property="updateby" jdbcType="INTEGER" />
-    <result column="updateTime" property="updatetime" jdbcType="DATE" />
-    <association column="school_id" property="school" resultMap="com.wzj.ssm.entity.School.BaseResultMap" />
-    <association column="year_id" property="year" resultMap="com.wzj.ssm.entity.Year.BaseResultMap" />
-  </resultMap>
+<mapper namespace="com.wzj.ssm.dao.modelMapper.GradeMapper">
+	<resultMap id="BaseResultMap" type="com.wzj.ssm.entity.Grade">
+		<id column="grade_id" property="gradeId" jdbcType="INTEGER" />
+		<result column="grade_name" property="gradeName" jdbcType="VARCHAR" />
+		<result column="student_count" property="studentCount" jdbcType="INTEGER" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="createBy" property="createby" jdbcType="INTEGER" />
+		<result column="createTime" property="createtime" jdbcType="DATE" />
+		<result column="updateBy" property="updateby" jdbcType="INTEGER" />
+		<result column="updateTime" property="updatetime" jdbcType="DATE" />
+		<association column="school_id" property="school" resultMap="com.wzj.ssm.dao.modelMapper.SchoolMapper.BaseResultMap" />
+		<association column="year_id" property="year" resultMap="com.wzj.ssm.dao.modelMapper.YearMapper.BaseResultMap" />
+	</resultMap>
+
+	<!-- 动态插入 -->
+	<!-- sql 片段 -->
+	<sql id="key">
+		<trim suffixOverrides=",">
+			<if test="gradeName != null">
+				grade_name,
+			</if>
+			<if test="studentCount != null">
+				student_count,
+			</if>
+			<if test="school != null and school.schoolId != null">
+				school_id,
+			</if>
+			<if test="year != null and year.yearId != null">
+				year_id,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="createby != null">
+				createBy,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+			<if test="updateby != null">
+				updateBy,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+		</trim>
+	</sql>
+	<sql id="val">
+		<trim suffixOverrides=",">
+			<if test="gradeName != null">
+				#{gradeName,jdbcType=VARCHAR},
+			</if>
+			<if test="studentCount != null">
+				#{studentCount,jdbcType=INTEGER},
+			</if>
+			<if test="school != null and school.schoolId != null">
+				#{school.schoolId,jdbcType=INTEGER},
+			</if>
+			<if test="year != null and year.yearId != null">
+				#{year.yearId,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="createby != null">
+				#{createby,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=DATE},
+			</if>
+			<if test="updateby != null">
+				#{updateby,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=DATE},
+			</if>
+		</trim>
+	</sql>
+
+	<!-- myBatis中提出了 sql片段的概念, 一条语句可以用多条sql片段组合而成 -->
+	<insert id="saveGradeSelective" parameterType="com.wzj.ssm.entity.Grade">
+		INSERT INTO t_grade (
+		<include refid="key" />
+		) VALUES (
+		<include refid="val" />
+		)
+	</insert>
+
+	<update id="updateGradeSelective" parameterType="com.wzj.ssm.entity.Grade">
+		UPDATE t_grade
+		<set>
+			<if test="gradeName != null">
+				grade_name = #{gradeName,jdbcType=VARCHAR},
+			</if>
+			<if test="studentCount != null">
+				student_count = #{studentCount,jdbcType=INTEGER},
+			</if>
+			<if test="school != null and school.schoolId != null">
+				school_id = #{school.schoolId,jdbcType=INTEGER},
+			</if>
+			<if test="year != null and year.yearId != null">
+				year_id = #{year.yearId,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="createby != null">
+				createBy = #{createby,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=DATE},
+			</if>
+			<if test="updateby != null">
+				updateBy = #{updateby,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=DATE},
+			</if>
+		</set>
+		WHERE grade_id = #{gradeId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getGradeJoinYearById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		SELECT g.grade_id, g.grade_name, g.student_count,
+		g.description,g.createBy, g.createTime, g.updateBy,
+		g.updateTime, g.year_id, g.school_id
+		FROM t_grade g
+		LEFT JOIN t_year y
+		ON
+			g.year_id=y.year_id
+		WHERE
+			g.grade_id=#{gradeId,jdbcType=INTEGER}
+	</select>
+
 </mapper>

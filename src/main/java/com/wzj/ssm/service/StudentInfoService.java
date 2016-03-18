@@ -7,4 +7,6 @@ import com.wzj.ssm.entity.StudentInfo;
 public interface StudentInfoService extends BaseService<StudentInfo>  {
 
 	public void deleteList(List<Integer> idsList);
+
+	public List<StudentInfo> getStudentsByGradeId(Integer gradeId);
 }

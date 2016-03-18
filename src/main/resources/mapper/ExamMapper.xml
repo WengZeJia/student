@@ -3,7 +3,7 @@
 <mapper namespace="com.wzj.ssm.entity.Exam" >
   <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.Exam" >
     <id column="exam_id" property="examId" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="exam_name" property="examName" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="createBy" property="createby" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="DATE" />

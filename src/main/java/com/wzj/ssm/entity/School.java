@@ -10,7 +10,7 @@ public class School extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer schoolId;
 
-    private String name;
+    private String schoolName;
 
     private String schoolType;
 
@@ -24,15 +24,15 @@ public class School extends BaseModel {
 		this.schoolId = schoolId;
 	}
 
-	public String getName() {
-        return name;
-    }
+    public String getSchoolName() {
+		return schoolName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
+	}
 
-    public String getSchoolType() {
+	public String getSchoolType() {
         return schoolType;
     }
 

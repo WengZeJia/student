@@ -96,23 +96,6 @@
                     showMin: false,
                     isResize: false,
                     slide: false, 
-                    buttons: 
-                    [ 
-	                    {
-	                    	text: '确定', 
-	                    	onclick: function (item, dialog) {
-	                    		alert(item.text); 
-	                    		window.console.info(dialog);
-	                    	},
-	                    	cls:'l-dialog-btn-highlight'
-	                    },
-	                    { 
-	                    	text: '取消', 
-	                    	onclick: function (item, dialog) {
-	                    		dialog.close(); 
-	                    	}
-	                    }
-	                ]
                 });
 
         	}

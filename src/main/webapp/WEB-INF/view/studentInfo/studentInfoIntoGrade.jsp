@@ -27,7 +27,7 @@
 		var getGradeListUrl = "${ctx}/grade/getAll.action";
 	    window['g'] =
 	    $("#maingrid").ligerGrid({
-	        height: '100%',
+	        height: '80%',
 	        inWindow: true,
 	        checkbox: true,
 	    	isSingleCheck: true,
@@ -37,12 +37,22 @@
 	        { display: '班级名称', name: 'name', minWidth: 100 },
 	        { display: '学生数量', name: 'studentCount', minWidth: 100 }
 	        ], pageSize:10 ,rownumbers:true
-	        })
+	        });
+	        
+	        $("#btn").ligerButton(
+            {
+                click: function ()
+                {
+                    alert('111');
+                }
+            });
+
 	});
 	</script>
 </head>
 <body style="overflow:hidden; padding:2px;">
-    <h4>入班教师：</h4><div id="checkedStudent"></div>
+    <h4>入班学生：</h4><div id="checkedStudent"></div>
 	<div id="maingrid"></div>
+	<div id="btn" style="margin-top: 10px;"></div>
 </body>
 </html>

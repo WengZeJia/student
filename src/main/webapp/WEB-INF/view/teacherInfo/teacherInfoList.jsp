@@ -77,7 +77,7 @@
                 url: getTeacherListUrl,
                 columns: [
                 { display: '工号', name: 'number'},
-                { display: '姓名', name: 'name' },
+                { display: '姓名', name: 'teacherName' },
                 { display: '性别', name: 'gender',  render:function(rowdata, index, value) {
 	           		if (value != null) {
 	           			if(value == "m") {

@@ -22,7 +22,7 @@ public class TeacherInfo extends BaseModel implements UserDetails {
 
     private String password;
 
-    private String name;
+    private String teacherName;
 
     private String gender;
     
@@ -75,15 +75,15 @@ public class TeacherInfo extends BaseModel implements UserDetails {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getTeacherName() {
+		return teacherName;
+	}
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
 
-    public String getGender() {
+	public String getGender() {
         return gender;
     }
 
