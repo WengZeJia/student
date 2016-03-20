@@ -19,7 +19,7 @@
                 data: parentDialogData,
                 name: "studentInfoId",
                 valueField: "studentInfoId",
-                textField: 'name'
+                textField: 'studentName'
             });
         }
         $(":checkbox","#checkedStudent").attr("checked", true);
@@ -34,7 +34,7 @@
 	        allowAdjustColWidth: false,
 	        url: getGradeListUrl,
 	        columns: [
-	        { display: '班级名称', name: 'name', minWidth: 100 },
+	        { display: '班级名称', name: 'gradeName', minWidth: 100 },
 	        { display: '学生数量', name: 'studentCount', minWidth: 100 }
 	        ], pageSize:10 ,rownumbers:true
 	        });

@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 var namelist=[
-"张三","李四","王五","贺六","孙九","赵十","刘一"];
+"蔡俊潮","陈铱静","陈泳诗","孙九","赵十","刘一"];
 var mytime=null;
 
 function doit(){
@@ -27,7 +27,7 @@ function show(){
 	var box=window.document.getElementById("box");
 	var num=Math.floor((Math.random()*100000))%namelist.length;
 	box.innerHTML=namelist[num];
-	mytime=setTimeout("show()",1);
+	mytime=setTimeout("show()",100);
 } 
 </script>
 </head>

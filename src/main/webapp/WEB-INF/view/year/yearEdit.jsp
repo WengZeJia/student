@@ -62,7 +62,7 @@
 				<tr>
 					<th width="20%">年级名称:<span class="required"
 						style="color: red;">*</span></th>
-					<td><input type="text" style="width: 93%"  name="name" value="${year.name }" /></td>
+					<td><input type="text" style="width: 93%"  name="yearName" value="${year.yearName }" /></td>
 					<th width="20%"></th>
 					<td></td>
 				</tr>

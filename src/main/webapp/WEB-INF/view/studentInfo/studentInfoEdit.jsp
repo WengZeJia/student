@@ -65,8 +65,8 @@
 					<td><input type="text" style="width: 93%" name="number"
 						value="${studentInfo.number }" /></td>
 					<th width="20%">姓名:</th>
-					<td><input type="text" style="width: 93%" name="name"
-						value="${studentInfo.name }" /></td>
+					<td><input type="text" style="width: 93%" name="studentName"
+						value="${studentInfo.studentName }" /></td>
 				</tr>
 				<tr>
 					<th width="20%">性别:</th>

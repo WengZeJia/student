@@ -74,7 +74,7 @@
                 allowAdjustColWidth:false,
                 url: getTeacherListUrl,
                 columns: [
-                { display: '年级名称', name: 'name', minWidth: 100 },
+                { display: '年级名称', name: 'yearName', minWidth: 100 },
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [
                 { text: '添加', click: addClick, icon: 'add' },

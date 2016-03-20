@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wzj.ssm.dao.modelMapper.StudentInfoMapper" >
   <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.StudentInfo" >
-    <id column="student_id" property="studentId" jdbcType="INTEGER" />
+    <id column="student_info_id" property="studentInfoId" jdbcType="INTEGER" />
     <result column="number" property="number" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="student_name" property="studentName" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
     <result column="createTime" property="createtime" jdbcType="DATE" />
     <result column="updateBy" property="updateby" jdbcType="INTEGER" />
     <result column="updateTime" property="updatetime" jdbcType="DATE" />
-    <association column="grade_id" property="gradeId" resultMap="com.wzj.ssm.entity.Grade.BaseResultMap" />
+    <association column="grade_id" property="grade" resultMap="com.wzj.ssm.dao.modelMapper.GradeMapper.BaseResultMap" />
   </resultMap>
   
   <delete id="deleteList" parameterType="java.lang.Integer">
@@ -32,4 +32,12 @@
   	WHERE 
   		si.grade_id = #{gradeId}
   </select>
+  
+  <select id="getListJoinGrade" resultMap="BaseResultMap">
+  	SELECT si.student_info_id, si.number, si.student_name, si.gender, g.grade_id, g.grade_name 
+  	FROM t_student_info AS si 
+  	LEFT JOIN t_grade g
+	ON si.grade_id=g.grade_id
+  </select>
+  
 </mapper>

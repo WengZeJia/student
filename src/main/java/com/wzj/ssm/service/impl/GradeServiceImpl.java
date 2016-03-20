@@ -1,5 +1,7 @@
 package com.wzj.ssm.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.wzj.ssm.entity.Grade;
@@ -20,5 +22,9 @@ public class GradeServiceImpl extends BaseServiceImpl<Grade> implements GradeSer
 
 	public Grade getGradeJoinYearById(Integer gradeId) {
 		return this.gradeMapper.getGradeJoinYearById(gradeId);
+	}
+
+	public List<Grade> getListJoinYear() {
+		return this.gradeMapper.getListJoinYear();
 	}
 }

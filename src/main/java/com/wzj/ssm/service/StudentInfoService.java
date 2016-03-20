@@ -9,4 +9,6 @@ public interface StudentInfoService extends BaseService<StudentInfo>  {
 	public void deleteList(List<Integer> idsList);
 
 	public List<StudentInfo> getStudentsByGradeId(Integer gradeId);
+
+	public List<StudentInfo> getListJoinGrade();
 }

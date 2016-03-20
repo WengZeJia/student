@@ -82,7 +82,7 @@
         				gradeIds += "," + rows[i].gradeId
         			}
         		}
-        		var askBool = window.confirm("现在是要点名"+rows[0].name+"的小盆友吗？");
+        		var askBool = window.confirm("现在是要点名"+rows[0].gradeName+"的小盆友吗？");
 				if (askBool) {
 					var url = "call.action?gradeId="+rows[0].gradeId;
 	        		window.open(url); 
@@ -100,8 +100,8 @@
                 allowAdjustColWidth:false,
                 url: getTeacherListUrl,
                 columns: [
-                { display: '班级名称', name: 'name', minWidth: 100 },
-                { display: '年级', name: 'year', minWidth: 100 },
+                { display: '班级名称', name: 'gradeName', minWidth: 100 },
+                { display: '年级', name: 'year.yearName', minWidth: 100 },
                 { display: '学生数量', name: 'studentCount', minWidth: 100 }
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [

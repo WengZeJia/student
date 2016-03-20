@@ -38,7 +38,8 @@ public class StudentInfoController extends BaseController {
 	@ResponseBody
 	public Object getList() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<StudentInfo> studentList = studentInfoService.selectAll();
+//		List<StudentInfo> studentList = studentInfoService.selectAll();
+		List<StudentInfo> studentList = studentInfoService.getListJoinGrade();
 		int total = studentList.size();
 		map.put("Rows", studentList);
 		map.put("Total", total);

@@ -12,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wzj.ssm.entity.Grade;
 import com.wzj.ssm.entity.ResultMessage;
 import com.wzj.ssm.entity.StudentInfo;
-import com.wzj.ssm.entity.Year;
-import com.wzj.ssm.service.StudentInfoService;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -40,7 +38,8 @@ public class GradeController extends BaseController {
 	@ResponseBody
 	public Object getList() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Grade> gradeList = gradeService.selectAll();
+//		List<Grade> gradeList = gradeService.selectAll();
+		List<Grade> gradeList = gradeService.getListJoinYear();
 		int total = gradeList.size();
 		map.put("Rows", gradeList);
 		map.put("Total", total);

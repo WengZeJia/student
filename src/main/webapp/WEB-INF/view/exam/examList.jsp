@@ -74,7 +74,7 @@
                 allowAdjustColWidth:false,
                 url: getExamListUrl,
                 columns: [
-                { display: '考试名称', name: 'name', minWidth: 100 },
+                { display: '考试名称', name: 'examName', minWidth: 100 },
                 { display: '考试科目', name: 'subject.name', minWidth: 100 }
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [

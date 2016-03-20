@@ -62,7 +62,7 @@
 				<tr>
 					<th width="20%">考试名称:<span class="required"
 						style="color: red;">*</span></th>
-					<td><input type="text" style="width: 93%"  name="name" value="${exam.name }" /></td>
+					<td><input type="text" style="width: 93%"  name="examName" value="${exam.name }" /></td>
 					<%-- <th width="20%">科目:</th>
 					<td><input type="text" style="width: 93%" name="subject.subjectId"
 						value="${exam.subject.name }" /></td> --%>

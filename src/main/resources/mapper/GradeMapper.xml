@@ -42,8 +42,8 @@
 			<if test="updateby != null">
 				updateBy,
 			</if>
-			<if test="createtime != null">
-				createTime,
+			<if test="updatetime != null">
+				updateTime,
 			</if>
 		</trim>
 	</sql>
@@ -73,14 +73,14 @@
 			<if test="updateby != null">
 				#{updateby,jdbcType=INTEGER},
 			</if>
-			<if test="createtime != null">
-				#{createtime,jdbcType=DATE},
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=DATE},
 			</if>
 		</trim>
 	</sql>
 
 	<!-- myBatis中提出了 sql片段的概念, 一条语句可以用多条sql片段组合而成 -->
-	<insert id="saveGradeSelective" parameterType="com.wzj.ssm.entity.Grade">
+	<insert id="saveGradeSelective" parameterType="com.wzj.ssm.entity.Grade" useGeneratedKeys="true" keyProperty="gradeId">
 		INSERT INTO t_grade (
 		<include refid="key" />
 		) VALUES (
@@ -115,8 +115,8 @@
 			<if test="updateby != null">
 				updateBy = #{updateby,jdbcType=INTEGER},
 			</if>
-			<if test="createtime != null">
-				createTime = #{createtime,jdbcType=DATE},
+			<if test="updatetime != null">
+				updateTime = #{updatetime,jdbcType=DATE},
 			</if>
 		</set>
 		WHERE grade_id = #{gradeId,jdbcType=INTEGER}
@@ -126,13 +126,20 @@
 		parameterType="java.lang.Integer">
 		SELECT g.grade_id, g.grade_name, g.student_count,
 		g.description,g.createBy, g.createTime, g.updateBy,
-		g.updateTime, g.year_id, g.school_id
+		g.updateTime, g.year_id, y.year_name
 		FROM t_grade g
 		LEFT JOIN t_year y
 		ON
 			g.year_id=y.year_id
 		WHERE
 			g.grade_id=#{gradeId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="getListJoinYear" resultMap="BaseResultMap">
+		SELECT g.grade_id, g.grade_name, g.student_count, g.year_id, y.year_name
+		FROM t_grade g
+		LEFT JOIN t_year y
+		ON g.year_id=y.year_id
 	</select>
 
 </mapper>

@@ -111,9 +111,9 @@
                 allowAdjustColWidth:false,
                 url: getStudentListUrl,
                 columns: [
-                { display: '学号', name: 'number', width: 100, minWidth: 30 },
-                { display: '姓名', name: 'name', minWidth: 100 },
-                { display: '性别', name: 'gender', minWidth: 20, render:function(rowdata, index, value) {
+                { display: '学号', name: 'number' },
+                { display: '姓名', name: 'studentName'},
+                { display: '性别', name: 'gender', render:function(rowdata, index, value) {
 	           		if (value != null) {
 	           			if(value == "m") {
 	           				return "男";
@@ -124,7 +124,8 @@
 	        		} 
 	           		 return null;
 	        		}
-                }
+                },
+                { display: '班级', name: 'grade.gradeName' }
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [
                 { text: '增加', click: addClick, icon: 'add' },

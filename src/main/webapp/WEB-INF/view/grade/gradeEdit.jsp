@@ -33,16 +33,16 @@
 	$("#yearBox").ligerComboBox({
 			url : 'getYearList.action',
 			valueField : 'yearId',
-			textField : 'name',
+			textField : 'yearName',
 			selectBoxWidth : 250,
 			width : 250,
-			initValue: $("#yearId").val(),
-			initText: $("#yearId").val(),
 			hideOnLoseFocus: false,
 			onSelected: function(id, name) {
 				$("#yearId").val(id);
 			}
 		});
+		var manager=$("#yearBox").ligerComboBox({});
+		manager.selectValue($('#yearId').val()); 
 
 	})
 </script>
