@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wzj.ssm.entity.StudentInfo;
+import com.wzj.ssm.entity.Grade;
 import com.wzj.ssm.entity.ResultMessage;
 import com.wzj.ssm.util.StringUtil;
 
@@ -54,11 +55,10 @@ public class StudentInfoController extends BaseController {
 		Integer studentInfoId = studentInfo.getStudentInfoId();
 		if (studentInfoId == null || studentInfoId == 0) {
 			resultMsg = "添加数据成功";
-			studentInfoService.insertSelective(studentInfo);
 		} else {
 			resultMsg = "更新数据成功";
-			studentInfoService.updateByPrimaryKeySelective(studentInfo);
 		}
+		studentInfoService.saveStudentInfo(studentInfo);
 		resultMessage.addMessage(resultMsg).addMessage("studentInfoId", studentInfo.getStudentInfoId());
 		return resultMessage.getReturnMap();
 	}
@@ -70,7 +70,8 @@ public class StudentInfoController extends BaseController {
 			String studentInfoIdStr = request.getParameter("studentInfoId");
 			String isReadOnly = request.getParameter("isReadOnly");
 			Integer studentInfoId = StringUtil.parseIntIsNullGetDef(studentInfoIdStr, 0);
-			StudentInfo studentInfoDB = studentInfoService.selectByPrimaryKey(studentInfoId);
+//			StudentInfo studentInfoDB = studentInfoService.selectByPrimaryKey(studentInfoId);
+			StudentInfo studentInfoDB = studentInfoService.getStudentJoinGradeById(studentInfoId);
 			mv = getAutoView().addObject("studentInfo", studentInfoDB).addObject("isReadOnly", isReadOnly);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -108,5 +109,11 @@ public class StudentInfoController extends BaseController {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	@RequestMapping("/getGradeList")
+	@ResponseBody
+	public Object getGradeList() {
+		return gradeService.selectAll();
 	}
 }

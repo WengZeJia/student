@@ -11,4 +11,8 @@ public interface StudentInfoService extends BaseService<StudentInfo>  {
 	public List<StudentInfo> getStudentsByGradeId(Integer gradeId);
 
 	public List<StudentInfo> getListJoinGrade();
+
+	public StudentInfo getStudentJoinGradeById(Integer studentInfoId);
+
+	public void saveStudentInfo(StudentInfo studentInfo);
 }

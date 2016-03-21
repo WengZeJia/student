@@ -125,6 +125,7 @@
 	           		 return null;
 	        		}
                 },
+                { display: '年龄', name: 'age'},
                 { display: '班级', name: 'grade.gradeName' }
                 ], pageSize:30 ,rownumbers:true,
                 toolbar: { items: [

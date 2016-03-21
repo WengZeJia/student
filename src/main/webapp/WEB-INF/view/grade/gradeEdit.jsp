@@ -79,7 +79,7 @@
 				<tr>
 					<th width="20%">班级名称:<span class="required"
 						style="color: red;">*</span></th>
-					<td><input type="text" style="width: 93%"  name="gradeName" value="${grade.gradeName }" /></td>
+					<td width="30%"><input type="text" style="width: 93%"  name="gradeName" value="${grade.gradeName }" /></td>
 					<th width="20%">学生数量:</th>
 					<td><input type="text" style="width: 93%" name="studentCount"
 						value="${grade.studentCount }" /></td>

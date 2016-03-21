@@ -26,7 +26,22 @@
 					   }
 				   }
 				});
-		})
+		});
+		
+		$("#gradeBox").ligerComboBox({
+			url : 'getGradeList.action',
+			valueField : 'gradeId',
+			textField : 'gradeName',
+			selectBoxWidth : 250,
+			width : 250,
+			hideOnLoseFocus: false,
+			onSelected: function(id, name) {
+				$("#gradeId").val(id);
+			}
+		});
+		var manager=$("#gradeBox").ligerComboBox({});
+		manager.selectValue($('#gradeId').val()); 
+
 	})
 </script>
 </head>
@@ -62,7 +77,7 @@
 				<tr>
 					<th width="20%">学号:<span class="required"
 						style="color: red;">*</span></th>
-					<td><input type="text" style="width: 93%" name="number"
+					<td width="30%"><input type="text" style="width: 93%" name="number"
 						value="${studentInfo.number }" /></td>
 					<th width="20%">姓名:</th>
 					<td><input type="text" style="width: 93%" name="studentName"
@@ -76,6 +91,16 @@
 					<th width="20%">年龄:</th>
 					<td><input type="text" style="width: 93%" name="age"
 						value="${studentInfo.age }" /></td>
+				</tr>
+				<tr>
+					<th width="20%">所属班级<span class="required"
+						style="color: red;">*</span></th>
+					<td>
+						<input type="text" id="gradeBox" />
+						<input type="hidden" id="gradeId" name="grade.gradeId" value="${studentInfo.grade.gradeId }" />
+					</td>
+					<th width="20%"></th>
+					<td></td>
 				</tr>
 				<tr>
 					<th width="20%">电话:</th>

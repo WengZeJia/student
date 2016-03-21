@@ -13,4 +13,10 @@ public interface StudentInfoMapper extends BaseMapper<StudentInfo> {
 
 	public List<StudentInfo> getListJoinGrade();
 
+	public StudentInfo getStudentJoinGradeById(Integer studentInfoId);
+
+	public void saveStudentInfoSelective(StudentInfo studentInfo);
+
+	public void updateStudentInfo(StudentInfo studentInfo);
+
 }

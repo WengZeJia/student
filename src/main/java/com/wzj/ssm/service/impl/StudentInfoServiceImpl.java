@@ -21,4 +21,18 @@ public class StudentInfoServiceImpl extends BaseServiceImpl<StudentInfo> impleme
 	public List<StudentInfo> getListJoinGrade() {
 		return this.studentInfoMapper.getListJoinGrade();
 	}
+
+	public StudentInfo getStudentJoinGradeById(Integer studentInfoId) {
+		return this.studentInfoMapper.getStudentJoinGradeById(studentInfoId);
+	}
+
+	public void saveStudentInfo(StudentInfo studentInfo) {
+		if(studentInfo != null) {
+			if(studentInfo.getStudentInfoId() == null) {
+				this.studentInfoMapper.saveStudentInfoSelective(studentInfo);
+			} else {
+				this.studentInfoMapper.updateStudentInfo(studentInfo);
+			}
+		}
+	}
 }

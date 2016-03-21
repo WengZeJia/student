@@ -34,10 +34,184 @@
   </select>
   
   <select id="getListJoinGrade" resultMap="BaseResultMap">
-  	SELECT si.student_info_id, si.number, si.student_name, si.gender, g.grade_id, g.grade_name 
-  	FROM t_student_info AS si 
-  	LEFT JOIN t_grade g
+	SELECT si.student_info_id, si.number, si.student_name, si.gender, si.age, g.grade_id, g.grade_name
+	FROM t_student_info AS si
+	LEFT JOIN t_grade g
 	ON si.grade_id=g.grade_id
   </select>
   
+  <select id="getStudentJoinGradeById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	SELECT si.student_info_id, si.number, si.student_name, si.age, si.gender, si.phone,
+	si.email, si.description, si.createBy, si.createTime, si.updateBy,
+	si.updateTime, g.grade_id, g.grade_name
+  	FROM t_student_info AS si 
+  	LEFT JOIN t_grade g
+	ON 
+		si.grade_id=g.grade_id
+  	WHERE 
+  		si.student_info_id = #{studentInfoId}
+  </select>
+  
+  
+  <!-- 动态插入 -->
+	<!-- sql 片段 -->
+	<sql id="key">
+		<trim suffixOverrides="," >
+	      <if test="number != null" >
+	        number,
+	      </if>
+	      <if test="password != null" >
+	        password,
+	      </if>
+	      <if test="studentName != null" >
+	        student_name,
+	      </if>
+	      <if test="age != null" >
+	        age,
+	      </if>
+	      <if test="gender != null" >
+	        gender,
+	      </if>
+	      <if test="gradeId != null" >
+	        grade_id,
+	      </if>
+	      <if test="phone != null" >
+	        phone,
+	      </if>
+	      <if test="email != null" >
+	        email,
+	      </if>
+	      <if test="description != null" >
+	        description,
+	      </if>
+	      <if test="createby != null" >
+	        createBy,
+	      </if>
+	      <if test="createtime != null" >
+	        createTime,
+	      </if>
+	      <if test="updateby != null" >
+	        updateBy,
+	      </if>
+	      <if test="updatetime != null" >
+	        updateTime,
+	      </if>
+	    </trim>
+	</sql>
+	<sql id="val">
+		 <trim suffixOverrides="," >
+	      <if test="number != null" >
+	        #{number,jdbcType=VARCHAR},
+	      </if>
+	      <if test="password != null" >
+	        #{password,jdbcType=VARCHAR},
+	      </if>
+	      <if test="studentName != null" >
+	        #{studentName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="age != null" >
+	        #{age,jdbcType=INTEGER},
+	      </if>
+	      <if test="gender != null" >
+	        #{gender,jdbcType=VARCHAR},
+	      </if>
+	      <if test="gradeId != null" >
+	        #{gradeId,jdbcType=INTEGER},
+	      </if>
+	      <if test="phone != null" >
+	        #{phone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="email != null" >
+	        #{email,jdbcType=VARCHAR},
+	      </if>
+	      <if test="description != null" >
+	        #{description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="createby != null" >
+	        #{createby,jdbcType=INTEGER},
+	      </if>
+	      <if test="createtime != null" >
+	        #{createtime,jdbcType=DATE},
+	      </if>
+	      <if test="updateby != null" >
+	        #{updateby,jdbcType=INTEGER},
+	      </if>
+	      <if test="updatetime != null" >
+	        #{updatetime,jdbcType=DATE},
+	      </if>
+	    </trim>
+	</sql>
+  
+  <insert id="saveStudentInfoSelective" parameterType="com.wzj.ssm.entity.StudentInfo"  useGeneratedKeys="true" keyProperty="studentInfoId" >
+	   INSERT INTO t_student_info (
+		<include refid="key" />
+		) VALUES (
+		<include refid="val" />
+		)
+  </insert>
+  
+   <update id="updateStudentInfoSelective" parameterType="com.wzj.ssm.entity.StudentInfo" >
+    update t_student_info
+    <set >
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null and grade.gradeId != null" >
+        grade_id = #{grade.gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createby != null" >
+        createBy = #{createby,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updateby != null" >
+        updateBy = #{updateby,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where student_info_id = #{studentInfoId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <update id="updateStudentInfo" parameterType="com.wzj.ssm.entity.StudentInfo" >
+    update t_student_info
+    set number = #{number,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=VARCHAR},
+      grade_id = #{grade.gradeId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      createBy = #{createby,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=DATE},
+      updateBy = #{updateby,jdbcType=INTEGER},
+      updateTime = #{updatetime,jdbcType=DATE}
+    where student_info_id = #{studentInfoId,jdbcType=INTEGER}
+  </update>
 </mapper>
