@@ -85,7 +85,7 @@
         		var askBool = window.confirm("现在是要点名"+rows[0].gradeName+"的小盆友吗？");
 				if (askBool) {
 					var url = "call.action?gradeId="+rows[0].gradeId;
-	        		window.open(url); 
+	        		window.open(url);
 				}
         	}
         }

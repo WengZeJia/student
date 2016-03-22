@@ -94,4 +94,5 @@ public class GradeController extends BaseController {
 	public Object getYearList() {
 		return yearService.selectAll();
 	}
+	
 }

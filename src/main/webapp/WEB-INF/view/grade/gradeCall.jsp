@@ -6,12 +6,13 @@
 <title>班级点名</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/css/gradeCall.css" rel="stylesheet" type="text/css" />
-
 <script type="text/javascript">
+
 var namelist=[
 "蔡俊潮","陈铱静","陈泳诗","孙九","赵十","刘一"];
 var mytime=null;
-
+var temp = "${studentList}";
+alert(temp);
 function doit(){
 	var bt=window.document.getElementById("bt");
 	if(mytime==null){
