@@ -82,11 +82,26 @@
         				gradeIds += "," + rows[i].gradeId
         			}
         		}
-        		var askBool = window.confirm("现在是要点名"+rows[0].gradeName+"的小盆友吗？");
-				if (askBool) {
-					var url = "call.action?gradeId="+rows[0].gradeId;
-	        		window.open(url);
-				}
+        		$.ajax({
+        			type : "GET",
+        			url : "getGradeStudentsData.action?gradeId="+rows[0].gradeId,
+        			contentType : 'application/json;charset=utf-8', //设置请求头信息
+        			success : function(studentList) {
+        				if (studentList.length > 0) {
+        					var askBool = window.confirm("现在是要点名"+rows[0].gradeName+"的小盆友吗？");
+        					if (askBool) {
+        						var url = "call.action?gradeId="+rows[0].gradeId;
+        		        		window.open(url);
+        					}
+        				} else {
+        					var tip = $.ligerDialog.tip({  title: '提示信息',content:rows[0].gradeName + "还没有添加学生！",isDrag:false }); 
+        	        		setTimeout(function() {
+        	        			tip.close();
+        	        		},2000);
+        				}
+        			}
+        		});
+        		
         	}
         }
         

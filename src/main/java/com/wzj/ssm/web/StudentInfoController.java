@@ -116,4 +116,14 @@ public class StudentInfoController extends BaseController {
 	public Object getGradeList() {
 		return gradeService.selectAll();
 	}
+	
+	
+	@RequestMapping("/importExcel")
+	public ModelAndView importExcel() {
+		try {
+			return this.getAutoView();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

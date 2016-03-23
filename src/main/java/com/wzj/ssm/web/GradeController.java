@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -82,8 +83,7 @@ public class GradeController extends BaseController {
 		try {
 			String gradeIdStr = request.getParameter("gradeId");
 			Integer gradeId = StringUtil.parseIntIsNullGetDef(gradeIdStr, 0);
-			List<StudentInfo> studentList = studentInfoService.getStudentsByGradeId(gradeId);
-			return this.getAutoView().addObject("studentList", studentList);
+			return this.getAutoView().addObject("gradeId", gradeId);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -93,6 +93,15 @@ public class GradeController extends BaseController {
 	@ResponseBody
 	public Object getYearList() {
 		return yearService.selectAll();
+	}
+	
+	@RequestMapping("/getGradeStudentsData")
+	@ResponseBody
+	public Object getGradeStudentsData() {
+		String gradeIdStr = request.getParameter("gradeId");
+		Integer gradeId = StringUtil.parseIntIsNullGetDef(gradeIdStr, 0);
+		List<StudentInfo> studentList = studentInfoService.getStudentsByGradeId(gradeId);
+		return studentList;
 	}
 	
 }

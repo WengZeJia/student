@@ -101,6 +101,22 @@
         	}
         }
         
+        function importExcelClick() {
+        	$.ligerDialog.open({
+                height: 300,
+                width: 600,
+                title: '导入',
+                url: 'importExcel.action',
+                isDrag: false,
+                showMax: false,
+                showToggle: false,
+                showMin: false,
+                isResize: false,
+                slide: false, 
+            });
+        }
+        
+        
         $(function () {
         	var getStudentListUrl = "${ctx}/studentInfo/getAll.action";
             window['g'] =
@@ -137,13 +153,16 @@
                 { line: true },
                 { text: '查看', click: viewClick, icon: 'view' },
                 { line: true },
-                { text: '入班', click: intoGradeClick, icon: 'role' }
+                { text: '入班', click: intoGradeClick, icon: 'role' },
+                { line: true },
+                { text: '导入', click: importExcelClick, icon: 'excel' }
                 ]
                 }
             });
              
 
             $("#pageloading").hide();
+            
         });
 
         function deleteRow()
@@ -159,7 +178,6 @@
     <div id="maingrid"></div>
    
   <div style="display:none;">
-  
 </div>
  
 </body>

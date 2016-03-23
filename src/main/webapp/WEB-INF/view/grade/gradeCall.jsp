@@ -6,13 +6,10 @@
 <title>班级点名</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="${pageContext.request.contextPath}/css/gradeCall.css" rel="stylesheet" type="text/css" />
+<script src="${pageContext.request.contextPath}/common/ligerui_lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-
-var namelist=[
-"蔡俊潮","陈铱静","陈泳诗","孙九","赵十","刘一"];
+var namelist=[];
 var mytime=null;
-var temp = "${studentList}";
-alert(temp);
 function doit(){
 	var bt=window.document.getElementById("bt");
 	if(mytime==null){
@@ -30,11 +27,31 @@ function show(){
 	var num=Math.floor((Math.random()*100000))%namelist.length;
 	box.innerHTML=namelist[num];
 	mytime=setTimeout("show()",100);
-} 
+}
+
+
+$(function() {
+	var gradeId = parseInt("${gradeId}");
+	if(gradeId!==0) {
+		$.ajax({
+			type : "GET",
+			url : "getGradeStudentsData.action?gradeId="+gradeId,
+			contentType : 'application/json;charset=utf-8', //设置请求头信息
+			success : function(msg) {
+				if (msg != null) {
+					for(var i=0; i<msg.length; i++) {
+						namelist.push(msg[i].studentName);
+					}
+				}
+			}
+		});
+	} else {
+		alert("该班级还没有添加学生，请返回添加学生！");
+	}
+})
 </script>
 </head>
 <body id="bodybj">
-
 <div id="box">亲，准备好点名了吗？</div>
 <div id="bt" onClick="doit()">开始点名</div>
 
