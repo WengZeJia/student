@@ -25,6 +25,3 @@
 <script src="${ctx}/common/ligerui_lib/ligerUI/js/plugins/ligerResizable.js" type="text/javascript"></script>
 <script src="${ctx}/common/ligerui_lib/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
 <script src="${ctx}/common/ligerui_lib/ligerUI/js/plugins/ligerDrag.js" type="text/javascript"></script>
-<!-- webuploader插件 -->
-<script src="${ctx}/common/webuploader/webuploader.js" type="text/javascript"></script>
-<link href="${ctx}/common/webuploader/webuploader.css" rel="stylesheet" type="text/css">
