@@ -130,5 +130,6 @@
 			</table>
 			<input type="hidden" name="studentInfoId" value="${studentInfo.studentInfoId }"/>
 		</form>
+	</div>
 </body>
 </html>

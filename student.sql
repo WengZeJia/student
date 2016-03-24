@@ -6,6 +6,8 @@ use ssm;
 
 drop table if exists t_exam;
 
+drop table if exists t_file_info;
+
 drop table if exists t_grade;
 
 drop table if exists t_grade_exam_middle;
@@ -52,6 +54,27 @@ create table t_exam
 );
 
 alter table t_exam comment '考试表';
+
+/*==============================================================*/
+/* Table: t_file_info                                           */
+/*==============================================================*/
+create table t_file_info
+(
+   file_info_id         int not null auto_increment comment '文件ID',
+   file_name            varchar(100) comment '文件名称',
+   file_alias_name      varchar(100) comment '文件别名',
+   file_type            int comment '文件类型',
+   file_path            varchar(200) comment '文件路径',
+   teacher_info_id      int comment '所属教师ID',
+   description          varchar(200),
+   createBy             int,
+   createTime           date,
+   updateBy             int,
+   updateTime           date,
+   primary key (file_info_id)
+);
+
+alter table t_file_info comment '文件信息（如：导入学生excel）';
 
 /*==============================================================*/
 /* Table: t_grade                                               */
@@ -414,6 +437,9 @@ alter table t_exam add constraint FK_Reference_5 foreign key (subject_id)
       references t_subject (subject_id) on delete restrict on update restrict;
 
 alter table t_exam add constraint FK_Reference_6 foreign key (teacher_id)
+      references t_teacher_info (teacher_info_id) on delete restrict on update restrict;
+      
+alter table t_file_info add constraint FK_Reference_18 foreign key (teacher_info_id)
       references t_teacher_info (teacher_info_id) on delete restrict on update restrict;
 
 alter table t_grade add constraint FK_Reference_1 foreign key (school_id)

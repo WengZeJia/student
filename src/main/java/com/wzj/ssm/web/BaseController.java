@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wzj.ssm.service.ExamService;
+import com.wzj.ssm.service.FileInfoService;
 import com.wzj.ssm.service.GradeService;
 import com.wzj.ssm.service.MarkService;
 import com.wzj.ssm.service.SchoolService;
@@ -54,6 +55,8 @@ public class BaseController {
 	protected SubjectService subjectService;
 	@Resource
 	protected TeacherInfoService teacherInfoService;
+	@Resource
+	protected FileInfoService fileInfoService;
 	
 	public ModelAndView getAutoView() throws Exception {
 		String requestURI = request.getRequestURI();

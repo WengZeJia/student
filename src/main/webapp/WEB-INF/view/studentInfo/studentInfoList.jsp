@@ -102,18 +102,7 @@
         }
         
         function importExcelClick() {
-        	$.ligerDialog.open({
-                height: 300,
-                width: 600,
-                title: '导入',
-                url: 'importExcel.action',
-                isDrag: false,
-                showMax: false,
-                showToggle: false,
-                showMin: false,
-                isResize: false,
-                slide: false, 
-            });
+        	window.location.href = "importExcel.action";
         }
         
         

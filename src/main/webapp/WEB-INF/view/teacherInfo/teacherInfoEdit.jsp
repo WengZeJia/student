@@ -108,5 +108,6 @@
 			<input type="hidden" name="isCredentialsNonExpired" value="1"/>
 			<input type="hidden" name="isEnabled" value="1"/>
 		</form>
+	</div>
 </body>
 </html>

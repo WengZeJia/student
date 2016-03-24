@@ -114,5 +114,6 @@
 			</table>
 			<input type="hidden" name="gradeId" value="${grade.gradeId }"/>
 		</form>
+	</div>
 </body>
 </html>

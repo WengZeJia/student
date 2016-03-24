@@ -86,5 +86,6 @@
 			</table>
 			<input type="hidden" name="yearId" value="${year.yearId }"/>
 		</form>
+	</div>
 </body>
 </html>

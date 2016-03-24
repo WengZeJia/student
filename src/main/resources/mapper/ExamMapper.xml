@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wzj.ssm.entity.Exam" >
+<mapper namespace="com.wzj.ssm.dao.modelMapper.ExamMapper" >
   <resultMap id="BaseResultMap" type="com.wzj.ssm.entity.Exam" >
     <id column="exam_id" property="examId" jdbcType="INTEGER" />
     <result column="exam_name" property="examName" jdbcType="VARCHAR" />

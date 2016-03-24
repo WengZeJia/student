@@ -87,5 +87,6 @@
 			</table>
 			<input type="hidden" name="examId" value="${exam.examId }"/>
 		</form>
+	</div>
 </body>
 </html>

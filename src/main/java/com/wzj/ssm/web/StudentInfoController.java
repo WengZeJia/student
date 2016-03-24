@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wzj.ssm.entity.StudentInfo;
-import com.wzj.ssm.entity.Grade;
 import com.wzj.ssm.entity.ResultMessage;
+import com.wzj.ssm.entity.StudentInfo;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -117,4 +116,13 @@ public class StudentInfoController extends BaseController {
 		return gradeService.selectAll();
 	}
 	
+	
+	@RequestMapping("/importExcel")
+	public ModelAndView importExcel() {
+		try {
+			return this.getAutoView();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
