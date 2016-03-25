@@ -3,8 +3,9 @@ package com.wzj.ssm.entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
-
+@Table(name = "t_file_info")
 public class FileInfo extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,8 @@ public class FileInfo extends BaseModel {
     private String fileAliasName;
 
     private Integer fileType;
+    
+    private Integer typeResourceId;
 
     private String filePath;
 
@@ -55,7 +58,15 @@ public class FileInfo extends BaseModel {
         this.fileType = fileType;
     }
 
-    public String getFilePath() {
+    public Integer getTypeResourceId() {
+		return typeResourceId;
+	}
+
+	public void setTypeResourceId(Integer typeResourceId) {
+		this.typeResourceId = typeResourceId;
+	}
+
+	public String getFilePath() {
         return filePath;
     }
 

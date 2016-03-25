@@ -8,7 +8,8 @@
 <link href="${ctx}/common/ligerui_lib/ligerUI/skins/ligerui-icons.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/common/ligerui_lib/ligerUI/skins/Gray2014/css/all.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/common/otherui_lib/css/web.css" rel="stylesheet" type="text/css" />
-<script src="${ctx}/common/ligerui_lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>    
+<script src="${ctx}/common/ligerui_lib/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>   
+<script src="${ctx}/js/jquery.form.js" type="text/javascript"></script>   
 <script src="${ctx}/common/ligerui_lib/ligerUI/js/ligerui.all.js" type="text/javascript"></script> 
 <script src="${ctx}/common/ligerui_lib/ligerUI/js/plugins/ligerTab.js"></script>
 <script src="${ctx}/common/ligerui_lib/jquery.cookie.js"></script>

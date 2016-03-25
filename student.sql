@@ -64,6 +64,7 @@ create table t_file_info
    file_name            varchar(100) comment '文件名称',
    file_alias_name      varchar(100) comment '文件别名',
    file_type            int comment '文件类型',
+   type_resource_id     int comment '文件类型资源的ID',
    file_path            varchar(200) comment '文件路径',
    teacher_info_id      int comment '所属教师ID',
    description          varchar(200),

@@ -37,6 +37,12 @@
         <log4j.version>1.2.12</log4j.version>
         <!-- jstl版本号 -->
         <jstl.version>1.2</jstl.version>
+        <!-- poi版本号 -->
+        <poi.version>3.9</poi.version>
+        <!-- fileupload版本号 -->
+        <fileupload.version>1.2.2</fileupload.version>
+        <!-- io版本号 -->
+        <io.version>1.4</io.version>
     </properties>
     
     <dependencies>
@@ -266,6 +272,28 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
+		
+		<!-- poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		
+		<!-- fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${fileupload.version}</version>
+		</dependency>
+		<!-- io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${io.version}</version>
+		</dependency>
+		
+		
     </dependencies>
   
 </project>

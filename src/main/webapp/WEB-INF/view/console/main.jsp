@@ -269,6 +269,7 @@
                   <a class="l-link" href="javascript:f_addTab('year_listpage','年级列表页面', '${ctx }/year/list.action')">年级管理</a> 
                   <a class="l-link" href="javascript:f_addTab('grade_listpage','班级列表页面', '${ctx }/grade/list.action')">班级管理</a> 
                   <a class="l-link" href="javascript:f_addTab('student_listpage','学生列表页面', '${ctx }/studentInfo/list.action')">学生管理</a> 
+                  <a class="l-link" href="javascript:f_addTab('file_listpage','导入文件列表页面', '${ctx }/fileInfo/list.action')">导入管理</a> 
              </div>
              <div title="班级管理">
              <div style=" height:7px;"></div>
