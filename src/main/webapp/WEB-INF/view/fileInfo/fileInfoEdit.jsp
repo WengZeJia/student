@@ -13,7 +13,7 @@
 			$(":input").attr("disabled", true);
 		}
 		
-		$("#dataFormSave",$("div .panel-toolbar")).click(function() {
+		$("#dataFormSave",$("diev .panel-toolbar")).click(function() {
 			$("#saveForm").ajaxSubmit({
 				   type: "POST",
 				   url: $("#saveForm").attr("action"),

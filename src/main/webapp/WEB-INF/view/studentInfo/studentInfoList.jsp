@@ -101,10 +101,6 @@
         	}
         }
         
-        function importExcelClick() {
-        	window.location.href = "importExcel.action";
-        }
-        
         
         $(function () {
         	var getStudentListUrl = "${ctx}/studentInfo/getAll.action";
@@ -142,9 +138,7 @@
                 { line: true },
                 { text: '查看', click: viewClick, icon: 'view' },
                 { line: true },
-                { text: '入班', click: intoGradeClick, icon: 'role' },
-                { line: true },
-                { text: '导入', click: importExcelClick, icon: 'excel' }
+                { text: '入班', click: intoGradeClick, icon: 'role' }
                 ]
                 }
             });
