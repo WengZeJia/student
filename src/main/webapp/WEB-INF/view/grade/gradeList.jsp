@@ -105,18 +105,6 @@
         	}
         }
         
-        function importExcelClick() {
-        	var rows = $("#maingrid").ligerGetGridManager().getSelectedRows();
-        	if (rows == null || rows.length == 0 || rows.length > 1) { 
-        		var tip = $.ligerDialog.tip({  title: '提示信息',content:'请选择一行',isDrag:false}); 
-        		setTimeout(function() {
-        			tip.close();
-        		},2000);
-        		return ;
-        	} else {
-	        	window.location.href = "importExcel.action?gradeId="+rows[0].gradeId;
-        	}
-        }
         
         $(function () {
         	var getTeacherListUrl = "${ctx}/grade/getAll.action";
@@ -142,8 +130,6 @@
                 { text: '查看', click: viewClick, icon: 'view' },
                 { line: true },
                 { text: '点名', click: callClick, icon: 'memeber' },
-                { line: true },
-                { text: '导入', click: importExcelClick, icon: 'excel' }
                 ]
                 }
             });

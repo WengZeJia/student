@@ -12,8 +12,13 @@
 		if(isReadOnly != null && $.trim(isReadOnly).length > 0 && Boolean(isReadOnly)) {
 			$(":input").attr("disabled", true);
 		}
+		if(parseInt($("#fileInfoId").val())>0 && $.trim(file.val())!=='') {
+			$("#importPreview").show();
+		} else {
+			$("#importPreview").hide();
+		}
 		
-		$("#dataFormSave",$("diev .panel-toolbar")).click(function() {
+		$("#dataFormSave",$("div .panel-toolbar")).click(function() {
 			$("#saveForm").ajaxSubmit({
 				   type: "POST",
 				   url: $("#saveForm").attr("action"),
@@ -27,6 +32,19 @@
 				});
 				//$("#saveForm").submit();
 		})
+		
+		var fileTypeDataGrid = [{'id':1, 'name':'学生信息'},{'id':2,'name':'学生成绩'}]
+		$("#fileTypeBox").ligerComboBox({
+			data : fileTypeDataGrid,
+			textField : 'name',
+			valueField : 'id',
+			valueFieldID : 'fileType',
+			selectBoxWidth : 250,
+			width : 250,
+			hideOnLoseFocus: false,
+			onSelected: function(id, name) {
+			}
+		});
 	})
 </script>
 </head>
@@ -62,7 +80,7 @@
 				<tr>
 					<th width="20%">文件:<span class="required"
 						style="color: red;">*</span></th>
-					<td width="30%"><input type="file" style="width: 63%"  name="file" accept="application/vnd.ms-excel"/></td>
+					<td width="30%"><input type="file" style="width: 63%"  name="file" accept="application/vnd.ms-excel"/><a id="importPreview" class="link show">导入预览</a></td>
 					<th width="20%">文件别名:<span class="required"
 						style="color: red;">*</span></th>
 					<td width="30%"><input type="text" style="width: 93%"  name="fileAliasName" value="${fileInfo.fileAliasName }" /></td>
@@ -72,7 +90,6 @@
 						style="color: red;">*</span></th>
 					<td>
 						<input type="text" id="fileTypeBox" />
-						<input type="hidden" id="fileType" name="fileType" value="${fileInfo.fileType }" />
 					</td>
 					<th width="20%"></th>
 					<td></td>
@@ -95,7 +112,7 @@
 					<td><fmt:formatDate type="date" dateStyle="medium" value="${fileInfo.updatetime }" /></td>
 				</tr>
 			</table>
-			<input type="hidden" name="yearId" value="${fileInfo.yearId }"/>
+			<input type="hidden" id="fileInfoId" name="fileInfoId" value="${fileInfo.fileInfoId }"/>
 		</form>
 	</div>
 </body>

@@ -1,5 +1,8 @@
 package com.wzj.ssm.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wzj.ssm.entity.FileInfo;
 import com.wzj.ssm.entity.ResultMessage;
+import com.wzj.ssm.util.FileUtils;
 import com.wzj.ssm.util.StringUtil;
 
 /**
@@ -49,9 +53,11 @@ public class FileInfoController extends BaseController {
 	@RequestMapping("/save")
 	@ResponseBody
 	public Object save(FileInfo fileInfo, @RequestParam("file") CommonsMultipartFile file) {
-		// 获得原始文件名
-		String fileName = file.getOriginalFilename();
-		System.out.println("原始文件名:" + fileName);
+		try {
+			transferFile(file);
+		} catch (Exception e) {
+			throw new RuntimeException("文件转存失败！");
+		} 
 		
 		String resultMsg = null;
 		ResultMessage resultMessage = new ResultMessage();
@@ -65,6 +71,21 @@ public class FileInfoController extends BaseController {
 		}
 		resultMessage.addMessage(resultMsg).addMessage("fileInfoId", fileInfo.getFileInfoId());
 		return resultMessage.getReturnMap();
+	}
+
+	/**
+	 * 将表单上传的文件转存到文件服务器
+	 * @param file
+	 * @throws Exception
+	 */
+	private void transferFile(CommonsMultipartFile file) throws Exception {
+		if (!file.isEmpty()) {  
+            // 文件保存路径  
+            File destFile = new File(FileUtils.getFileServerRealPath(), file.getOriginalFilename());
+    		FileUtils.createDestFile(destFile);
+            // 转存文件  
+			file.transferTo(destFile);  
+        }
 	}
 
 	@RequestMapping("edit")
