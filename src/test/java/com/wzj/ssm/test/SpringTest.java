@@ -44,7 +44,6 @@ public class SpringTest extends AbstractJUnit4SpringContextTests {
 //		Example example = new Example(Country.class);
 //		example.createCriteria().andGreaterThan("id", 100);
 //		countryList = mapper.selectByExample(example);
-
 	}
 	
 	@Test
